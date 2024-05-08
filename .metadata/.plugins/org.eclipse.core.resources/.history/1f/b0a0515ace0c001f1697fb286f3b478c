@@ -1,0 +1,10 @@
+package models;
+
+public class CartModel{
+	private int userId;
+	private int productId;
+	private String productName;
+	private int quantity;
+	private Double price;
+	
+}

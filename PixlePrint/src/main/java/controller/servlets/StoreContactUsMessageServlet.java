@@ -1,0 +1,51 @@
+package controller.servlets;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import models.ContactUsMessageModel;
+import utils.Utilities;
+import controller.DatabaseController;
+
+
+@WebServlet("/StoreContactUsMessage")
+public class StoreContactUsMessageServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	DatabaseController dbController = new DatabaseController();//creating a new object of the dbController class (servlet file)
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public StoreContactUsMessageServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String name = request.getParameter(Utilities.name);
+    	String contact = request.getParameter(Utilities.phone_number);
+    	String email = request.getParameter(Utilities.email);
+    	String message = request.getParameter(Utilities.message);
+    	
+    	ContactUsMessageModel contactUsMessageModel= new ContactUsMessageModel(name, contact,email, message );
+    	
+    	int result = dbController.storeContactUsMessages(contactUsMessageModel);
+    	System.out.println("Contact us form Result is : " + result);
+    	
+		if (result == 1) {
+		    request.getSession().setAttribute(Utilities.Successfully_Stored_Message, Utilities.Successfully_Stored_Message);
+		    response.sendRedirect(request.getContextPath() + Utilities.CONTACT_US_PAGE);
+		} 
+		else if (result == 0) {
+		    request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.INCORRECT_FORM_DATA_MESSAGE);
+		    request.getRequestDispatcher(Utilities.CONTACT_US_PAGE).forward(request, response);
+		} 
+		else {
+		    request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.SERVER_ERROR_MESSAGE);
+		    request.getRequestDispatcher(Utilities.CONTACT_US_PAGE).forward(request, response);
+		}
+    }
+}

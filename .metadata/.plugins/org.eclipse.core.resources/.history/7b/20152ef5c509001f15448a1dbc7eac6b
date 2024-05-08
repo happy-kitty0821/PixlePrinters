@@ -1,0 +1,126 @@
+@charset "UTF-8";
+   /* footer  */
+    .footer{
+        background: #000;
+        color: #8a8a8a;
+        font-size: 14px;
+        padding: 60px 0 20px;
+    }
+    .banner-images {
+       display: flex;
+       justify-content: space-between;
+    }
+    .banner {
+        text-align: center;
+        background-color: #ffffff;
+        margin: 0 auto;
+    }
+     
+    .banner img {
+        max-width: 100%;
+        height: auto;
+    }
+    /* Contact form styles */
+    .contact-form {
+        padding: 40px 0;
+        margin: 0 10px;
+    }
+     
+    .form-container {
+        max-width: 40%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+     
+    .contact-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+     
+    .form-group {
+        margin-bottom: 20px;
+    }
+     
+    .form-container label {
+        display:block;
+        font-weight: bold;
+    }
+    .form-container input, textarea{
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        resize: vertical;
+    }
+    .submit-button {
+        padding: 10px 20px;
+        background-color: #0dac30;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+     
+    /* Contact info styles */
+    .contact-info {
+        text-align: center;
+        padding: 50px 0;
+        background-color: #f7f7f7;
+    }
+     
+    .contact-info h2 {
+        margin-bottom: 20px;
+    }
+    .hamburger {
+        display: none;
+        color: rgb(0, 0, 0);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+.footer p{
+    color: #8a8a8a;
+}
+.footer h3{
+    color: #fff;
+    margin-bottom: 20px;
+}
+.footer-col1, .footer-col2, .footer-col3, .footer-col4{
+    min-width: 250px;
+    margin-bottom: 20px;
+} 
+.footer-col1{
+    flex-basis: 30%;
+}
+.footer-col2{
+    flex: 1;
+    text-align: center;
+}
+.footer-col2 img{
+    width: 180px;
+    margin-bottom: 20px;
+}
+.footer-col3, .footer-col4{
+    flex-basis: 12%;
+    text-align: center;
+}
+.app-logo{
+    margin-top: 20px;
+}
+.app-logo img{
+    width: 135px;
+}
+.footer hr{
+    border: none;
+    background:#b5b5b5;
+    height: 1.5px;
+    margin: 20px 0;
+}
+.copyright{
+    text-align: center;
+}

@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+module-start-timeout=300000
+runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<runtimes>\n  <runtime id\="apache-tomcat-8.5.99" location\="/home/happy-kitty/eclipse-workspace/apache-tomcat-8.5.99" name\="apache-tomcat-8.5.99" runtime-type-id\="org.eclipse.jst.server.tomcat.runtime.85" timestamp\="0"/>\n</runtimes>\n

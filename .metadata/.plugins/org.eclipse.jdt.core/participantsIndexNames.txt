@@ -1,0 +1,3 @@
+INDEX VERSION 1.134
+/home/happy-kitty/eclipse-workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2867448976.index
+/PixlePrint/src/main/java

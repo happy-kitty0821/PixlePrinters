@@ -1,0 +1,69 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+	background-color: #1d2634;
+	color: #9e9ea4;
+	font-family: "Montserrat", sans-serif;
+}
+
+/* Style the heading */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the table header */
+th {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style the table body */
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style the table body alternate row */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Style the table cell with profile picture */
+td img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+
+    td,
+    th {
+        padding: 8px;
+    }
+}
