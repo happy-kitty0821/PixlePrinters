@@ -8,6 +8,7 @@ import javax.servlet.http.Part;
 import utils.Utilities;
 
 public class UserModel implements Serializable{//implements Serializable to create a bean object
+	int userId;
 	private String fullName;
 	private String email;
 	private String userName;
@@ -56,6 +57,14 @@ public class UserModel implements Serializable{//implements Serializable to crea
 		this.profilePicture = getProfilePicUrl(imagePart);
 	}
 	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public String getFullName() {
 		return fullName;
 	}
@@ -97,6 +106,19 @@ public class UserModel implements Serializable{//implements Serializable to crea
 	}
 	public void setProfilePicture(Part part) {
 		this.profilePicture = getProfilePicUrl(part);
+	}
+	//constructor to be called when we want to store all  the user's info
+	public UserModel(int userId, String fullName, String email, String userName, String accountType, String password,
+			String phoneNumber, String profilePicture) {
+		super();
+		this.userId = userId;
+		this.fullName = fullName;
+		this.email = email;
+		this.userName = userName;
+		this.accountType = accountType;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.profilePicture = profilePicture;
 	}
 	
 }

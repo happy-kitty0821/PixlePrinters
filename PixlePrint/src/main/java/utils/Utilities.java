@@ -59,8 +59,12 @@ package utils;
 				+ "values(?,?,?,?,?)"
 				+ "ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
 		//query to get the cart info of a user
-		public static final String GET_USER_CART_INFO = "";
-		
+		public static final String GET_USER_CART_INFO = "SELECT c.productId, c.userId, c.productName, p.productImage, c.quantity, c.price"
+				+ " FROM Cart c "
+				+ " JOIN Product p ON c.productId = p.productId"
+				+ " WHERE c.userId = ?";	
+		//query to get search result
+		public static final String SEARCH_RESULT_QUERY = "SELECT * FROM Product WHERE productName LIKE ?";
 		
 		//defining a set of constant values
 		public static final String name = "name";

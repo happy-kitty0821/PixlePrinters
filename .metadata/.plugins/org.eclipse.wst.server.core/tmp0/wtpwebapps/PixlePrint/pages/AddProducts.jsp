@@ -1,4 +1,3 @@
-<%@ include file="AdminSidebar.jsp" %>
 <%@ page import="java.util.List"%>
 <%@ page import="models.BrandModel"%>
 
@@ -8,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add Product</title>
+
 <style>
 :root {
 	--color-primary: cornflowerblue; /* #7380ec */
@@ -38,8 +38,9 @@ body {
 }
 
 .container {
-	max-width: 600px;
+	width: 1000px;
 	margin: 0 auto;
+	margin-top: 100px;
 	padding: var(--padding-1);
 	background-color: var(--color-white);
 	border-radius: var(--card-border-radius);
@@ -57,7 +58,7 @@ body {
 }
 
 .form-group input, .form-group textarea, .form-group select {
-	width: 100%;
+	width: 40%;
 	padding: var(--padding-1);
 	border: 1px solid var(--color-info-dark);
 	border-radius: var(--border-radius-1);
@@ -74,7 +75,8 @@ body {
 }
 </style>
 </head>
-<body>
+<body style="display:flex; justify-content:space-between;"> 
+<%@ include file="AdminSidebar.jsp" %>
 	<div class="container">
 		<div class="form-messages">
 			<%
@@ -92,6 +94,8 @@ body {
 		<h2>Add Product</h2>
 		<form action="${pageContext.request.contextPath}/AddProductServlet"
 			method="POST" enctype="multipart/form-data">
+			<div style= "display:flex; ">
+			<div style="width:1200px;">
 			<div class="form-group">
 				<label for="productName">Product Name</label> <input type="text"
 					id="productName" name="productName" required>
@@ -130,6 +134,10 @@ body {
 					%>
 				</select>
 			</div>
+			
+			</div>
+			
+			<div style="width:1000px; ">
 			<div class="form-group">
 				<label for="printTechnology">Print Technology</label> <select
 					id="printTechnology" name="printTechnology" required>
@@ -184,7 +192,8 @@ body {
 					type="text" id="supportedPageSize" name="supportedPageSize"
 					required>
 			</div>
-
+		</div>
+		</div>
 			<button type="submit">Add Product</button>
 		</form>
 	</div>

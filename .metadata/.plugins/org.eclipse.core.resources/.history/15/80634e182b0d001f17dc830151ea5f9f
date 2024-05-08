@@ -1,0 +1,77 @@
+<%@ include file="Header.jsp" %>
+<%@ page import="java.util.List" %>
+<%@ page import="models.UserCartModel" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add To Cart</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Cart.css">
+    <script src="https://kit.fontawesome.com/11d376cef2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-left mb-5">Best Seller</h1>
+        <div id="root">
+            <% 
+            List<UserCartModel> userCartDetails = (List<UserCartModel>) request.getAttribute("userCartDetails");
+            if (userCartDetails != null && !userCartDetails.isEmpty()) {
+                for (UserCartModel cartItem : userCartDetails) {
+            %>
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="${pageContext.request.contextPath}/Uploads/ProductImages/<%= cartItem.getProductImage() %>" alt="<%= cartItem.getProductName() %>" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= cartItem.getProductName() %></h5>
+                            <p class="card-text">Quantity: <span id="quantity_<%= cartItem.getProductId() %>"><%= cartItem.getQuantity() %></span></p>
+                            <p class="card-text">Price: <%= cartItem.getPrice() %></p>
+                            <button onclick="removeItem(<%= cartItem.getProductId() %>)" class="btn btn-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%
+                }
+            } else {
+            %>
+            <p>Your cart is empty</p>
+            <%
+            }
+            %>
+        </div>
+    </div>
+    <script>
+        function removeItem(productId) {
+            // Send an AJAX request to remove the item from the cart
+            fetch('RemoveFromCartServlet?productId=' + productId, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the quantity display
+                    var quantityElement = document.getElementById('quantity_' + productId);
+                    if (quantityElement) {
+                        var currentQuantity = parseInt(quantityElement.innerText);
+                        if (currentQuantity > 1) {
+                            quantityElement.innerText = currentQuantity - 1;
+                        } else {
+                            // If quantity is 1, remove the card from the DOM
+                            var card = quantityElement.closest('.card');
+                            card.parentNode.removeChild(card);
+                        }
+                    }
+                } else {
+                    alert('Failed to remove item from cart');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+package models;
+
+import java.io.Serializable;
+
+public class UserCartModel implements Serializables{
+	int userId;
+	int productId;
+	String productName;
+	String  productImage;
+	Double price;
+	int quantity;
+	
+}

@@ -7,10 +7,11 @@
 <title>Admin Side Bar</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AdminSidebar.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/AdminSidebar.css"/>
+    
 </head>
 <body>
-	<div>
+	<div style="width:400px;">
 	      <aside id="sidebar">
         <div class="sidebar-title">
           <div class="sidebar-brand">
@@ -18,8 +19,7 @@
             >Pixelprinter
           </div>
           <span class="material-icons-outlined" onclick="closeSidebar()"
-            >close</span
-          >
+            >close</span>
         </div>
  <ul class="sidebar-list">
     <li class="sidebar-list-item">

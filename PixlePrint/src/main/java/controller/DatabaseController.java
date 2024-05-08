@@ -19,6 +19,7 @@ import models.BrandModel;
 import models.CartModel;
 import models.ContactUsMessageModel;
 import models.ProductModel;
+import models.UserCartModel;
 import models.UserModel;
 import utils.Utilities;
 
@@ -129,8 +130,19 @@ public class DatabaseController {
 		try (Connection con = getConnection()) {
 			PreparedStatement statement = con.prepareStatement(Utilities.Get_Login_User_Information);
 			statement.setString(1, username);
-			ResultSet result = statement.executeQuery();
-			System.out.print("result is :" + result);
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next()) {
+				int userId = resultSet.getInt("userId");
+				String fullName = resultSet.getString("fullName");
+				String email = resultSet.getString("email");
+				String userName = resultSet.getString("userName");
+				String accountType = resultSet.getString("accountType");
+				String password = resultSet.getString("password");
+				String phoneNumber = resultSet.getString("phoneNumber");
+				String profilePicture = resultSet.getString("profilePicture");
+				UserModel userModel = new UserModel(userId, fullName, email, userName, accountType, password, phoneNumber, profilePicture);
+				userDetails.add(userModel);
+			}
 		} catch (ClassNotFoundException | SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
@@ -357,14 +369,55 @@ public class DatabaseController {
 			return -1;
 		}
 	}
-	public List<CartModel> getUserCartInfo(){
-		List<CartModel> userCartDetail = new ArrayList<>();
+	public List<UserCartModel> getUserCartInfo(int userIdNum){
+		List<UserCartModel> userCartDetails = new ArrayList<>();
 		try(Connection con = getConnection()){
-			PreparedStatement statement = con.prepareStatement(null);
+			PreparedStatement statement = con.prepareStatement(Utilities.GET_USER_CART_INFO);
+			statement.setInt(1, userIdNum);
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next()) {
+				int userId = resultSet.getInt("userId");
+				int productId = resultSet.getInt("productId");
+				String productName = resultSet.getString("productName");
+				String productImage = resultSet.getString("productImage");
+				int quantity = resultSet.getInt("quantity");
+				Double price = resultSet.getDouble("price");
+				Double totalAmount= price * quantity;
+				UserCartModel userCartDetailsModel = new UserCartModel(productId, userId, productName, productImage, price, quantity, totalAmount);
+				userCartDetails.add(userCartDetailsModel);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return userCartDetail;
+		return userCartDetails;
+	}
+	
+	public void updateUserDetails() {
+		
+	}
+	
+	public List<ProductModel> getSearchResult(String userInput){
+		List<ProductModel> SearchResult = new ArrayList<>();
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(Utilities.SEARCH_RESULT_QUERY);
+			statement.setString(1,"%"+ userInput +"%");
+			ResultSet searchResult = statement.executeQuery();
+			while(searchResult.next()){
+				int productId = searchResult.getInt("productId");
+                String productName = searchResult.getString("productName");
+                String productDescription = searchResult.getString("productDesc");
+                Double price = searchResult.getDouble("price");
+                int quantity = searchResult.getInt("quantity");
+                String productImage = searchResult.getString("productImage");
+                String companyName = searchResult.getString("companyName");
+                ProductModel productModel = new ProductModel(productId, productName, productDescription, price, quantity, companyName, productImage); 
+                SearchResult.add(productModel);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return SearchResult;
 	}
 }

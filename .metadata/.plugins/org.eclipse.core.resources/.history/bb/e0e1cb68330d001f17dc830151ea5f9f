@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Edit Profile</title>
+
+  <link rel="stylesheet" href="../css/Profile.css">
+</head>
+<body>
+    <center>
+        <div class = "box">
+            <img src="../Images/Girl.jpg">
+            <input type ="file" anme="" id="file" accept="image/*">
+            <label for ="file" > Edit Profile</label>
+            <input type="text" name ="" placeholder = "User Name">
+            <input type="email" name ="" placeholder = "Email ID">
+            <input type="text" name ="" placeholder = "Phone Number">
+            <input type="text" name ="" placeholder = "Date of Birth">
+            <input type="text" name ="" placeholder = "Gender">
+            <button style="float: left;margin:10px 0 0 18.2%;">CANCEL</button>
+            <button style="float: right;margin:10px 18.2% 0 0;">DONE</button>
+        </div>
+    </center>
+</body>
+</html>

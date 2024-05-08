@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
             int userId = dbController.getUserId(username);
             session.setAttribute("userId", userId); //setting the maximum session timeout to 30 minutes
+            Cookie userCookie = new Cookie("username", username);
+            userCookie.setMaxAge(30 * 60); // Cookie expires after 30 minutes
             response.sendRedirect(request.getContextPath() + Utilities.HOME_PAGE);
         } 
         else if (loginResult == 5) {
@@ -48,7 +51,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
             int userId = dbController.getUserId(username);
             session.setAttribute("userId", userId);
-            response.sendRedirect(request.getContextPath() + Utilities.ADMIN_HOME_SERVLET);
+            Cookie userCookie = new Cookie("username", username);
+            userCookie.setMaxAge(30 * 60); // Cookie expires after 30 minutes
+            response.addCookie(userCookie);
+            response.sendRedirect(request.getContextPath() + Utilities.ADMIN_HOME_SERVLET);	
         } 
         else if (loginResult == 0) {
             request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.INCORRECT_LOGIN_CREDENTIAL_ERROR);

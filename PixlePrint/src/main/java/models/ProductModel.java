@@ -215,8 +215,21 @@ public class ProductModel{
 		this.printColor = printColor;
 	}
 
+	public ProductModel(int productId, String productName, String productDescription, double price, int quantity,
+			String companyName, String productImage) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.price = price;
+		this.quantity = quantity;
+		this.companyName = companyName;
+		this.productImage = productImage;
+	}
+
 //	public void setProductImage(String productImage) {
 //		this.productImage = productImage;
 //	}
+	//use for search
 	
 }

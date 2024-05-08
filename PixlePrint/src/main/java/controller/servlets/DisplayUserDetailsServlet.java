@@ -19,6 +19,7 @@ import controller.DatabaseController;
 @WebServlet("/DisplayUserDetailsServlet")
 public class DisplayUserDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	DatabaseController dbController = new DatabaseController();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,7 +35,6 @@ public class DisplayUserDetailsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		DatabaseController dbController = new DatabaseController();
 		List<UserModel> userDetails = dbController.getCustomerDetails();
 		request.setAttribute("userDetails", userDetails);
 		request.getRequestDispatcher(Utilities.SEE_ALL_USERS_PAGE).forward(request, response);
