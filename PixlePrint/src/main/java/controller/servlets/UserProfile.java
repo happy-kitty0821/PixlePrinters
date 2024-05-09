@@ -34,12 +34,17 @@ public class UserProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();//getting the session object
-		String username = (String) request.getSession().getAttribute("username");
+		String username = (String) session.getAttribute("username");
 		if (username != null) {
 			List<UserModel> userDetails = dbController.getLoggedInUserDetails("username");
 			request.setAttribute("userDetails", userDetails);
     		request.getRequestDispatcher("/pages/ProfilePage.jsp").forward(request, response);
 		}
+        else {
+        	System.out.println("user is not logged in");
+            // Redirect to the login page
+            response.sendRedirect(request.getContextPath() + "/pages/Login.jsp");
+        }
 	}
 
 	/**

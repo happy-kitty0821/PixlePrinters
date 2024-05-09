@@ -90,7 +90,13 @@
 							<input type="hidden" value=<%=product.getPrice()%> name="price"> 
 							<button type="submit" class="btn add-to-cart-btn" >Add to cart</button>
 						</form>
-						<button class="btn buy-now-btn" type="button">Buy Now</button>
+						<br>
+						<form action="${pageContext.request.contextPath}/PurchaseServlet" method="post">
+						<input type="hidden" value="1" name="quantity"> 
+						<input type="hidden" value=<%=product.getPrice()%> name="price"> 
+						<input type="hidden" value=<%=product.getProductId()%> name="productId"> 
+						<button type="submit" class="btn buy-now-btn" type="button">Buy Now</button>
+						</form>
 					</div>
 				</div>
 			</div>

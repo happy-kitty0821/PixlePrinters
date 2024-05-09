@@ -37,8 +37,19 @@ package utils;
 		public static final String GET_PRODUCT_COUNT = "select count(*) from Product;";
 		//query to get the brand count
 		public static final String GET_BRAND_COUNT = "select count(*) from Brand";
+		//query to add the product to the cart
+		public static final String ADD_PRODUCT_TO_CART = "insert into  Cart(userId, productId, productName, quantity, price)"
+				+ "values(?,?,?,?,?)"
+				+ "ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
 		//query to get the info of users
 		public static final String GET_CUSTOMER_DETATILS = "select * from User where accountType = 'User'";
+		//query to storre purchase histroy
+		public static final String STORE_PURCHASE_HISTROY = "insert into Purchase(quantity, totalAmount, userId, productId)"
+				+ "values(?,?,?,?)";
+		//update quantity after purchase
+		public static final String UPDATE_STOCK_QUANTITY_AFTER_PURCHASE = "UPDATE Product "
+		        + "SET quantity = quantity - ? "
+		        + "WHERE productId = ?";
 		//query to get the purchase history of a customer
 		public static final String GET_PURCHASE_HISTORY_OF_USER = "select"
 		        + "p.purchaseId, "
@@ -54,10 +65,7 @@ package utils;
 		        + "p.userId = ?;";
 		//query to get the userId based on username
 		public static final String GET_USER_ID = "select * from User where userName = ?";
-		//query to add the product to the cart
-		public static final String ADD_PRODUCT_TO_CART = "insert into  Cart(userId, productId, productName, quantity, price)"
-				+ "values(?,?,?,?,?)"
-				+ "ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
+
 		//query to get the cart info of a user
 		public static final String GET_USER_CART_INFO = "SELECT c.productId, c.userId, c.productName, p.productImage, c.quantity, c.price"
 				+ " FROM Cart c "

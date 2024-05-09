@@ -53,7 +53,7 @@
         </a>
     </li>
     <li class="sidebar-list-item">
-        <a href="#">
+        <a href="${pageContext.request.contextPath}/AdminSalesReportServlet">
             <span class="material-icons-outlined">view_kanban</span> Reports
         </a>
     </li>

@@ -19,6 +19,7 @@ import models.BrandModel;
 import models.CartModel;
 import models.ContactUsMessageModel;
 import models.ProductModel;
+import models.PurchaseModel;
 import models.UserCartModel;
 import models.UserModel;
 import utils.Utilities;
@@ -383,7 +384,8 @@ public class DatabaseController {
 				int quantity = resultSet.getInt("quantity");
 				Double price = resultSet.getDouble("price");
 				Double totalAmount= price * quantity;
-				UserCartModel userCartDetailsModel = new UserCartModel(productId, userId, productName, productImage, price, quantity, totalAmount);
+				UserCartModel userCartDetailsModel = new UserCartModel(productId, userId, productName, 
+				productImage, price, quantity, totalAmount);
 				userCartDetails.add(userCartDetailsModel);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -419,5 +421,40 @@ public class DatabaseController {
 			e.printStackTrace();
 		}
 		return SearchResult;
+	}
+	public int updateStockAfterPurchase(int numberStock, int productId) {
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(Utilities.UPDATE_STOCK_QUANTITY_AFTER_PURCHASE);
+			statement.setInt(1, numberStock);
+			statement.setInt(2, productId);
+			int semiResult = statement.executeUpdate();
+			return semiResult > 0 ? 1 : 0;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 1;
+		}
+		
+	}
+	public int purchaseProducts(PurchaseModel purchaseModel, Double totalAmount) {
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(Utilities.STORE_PURCHASE_HISTROY);
+			statement.setInt(1, purchaseModel.getQuantity());
+			statement.setDouble(2, totalAmount);
+			statement.setInt(3, purchaseModel.getUserId());
+			statement.setInt(4, purchaseModel.getProductid());
+			int semiResult = statement.executeUpdate();
+			int result = updateStockAfterPurchase(purchaseModel.getQuantity(), purchaseModel.getProductid());
+			if(result==1 && semiResult > 0) {
+				return 1;
+			}
+			else {
+				return -1;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
 	}
 }
