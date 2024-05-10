@@ -54,7 +54,7 @@
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
             <a href="${pageContext.request.contextPath}/UserProfile" class="fas fa-user-circle"></a> 
-            <a href="${pageContext.request.contextPath}/pages/Search.jsp" class="fas fa-search"></a> 
+            <a href="${pageContext.request.contextPath}/SearchServlet" class="fas fa-search"></a> 
             <a href="${pageContext.request.contextPath}/DisplayCart" class="fas fa-shopping-cart"></a>
         </div>
     </section>

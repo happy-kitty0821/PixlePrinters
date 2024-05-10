@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printer Design </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/productdetail.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Footer.css">
+</head>
+<body>
+    <jsp:include page="Header.jsp"></jsp:include>
+    <div class="container">
+    <div class="single-product">
+        <div class="row">
+            <div class="col-6">
+                <div class="product-image">
+                    <div class="product-image-main">
+                        <img src="${pageContext.request.contextPath}/Images/Product1.jpg" alt="" id="product-main-image">
+                    </div>
+                    <div class="product-image-slider">
+                        <img src="${pageContext.request.contextPath}/Images/canon2(1).jpg" alt=""  class="image-list">
+                        <img src="${pageContext.request.contextPath}/Images/canon3 (1).jpg" alt=""  class="image-list">
+                        <img src="${pageContext.request.contextPath}/Images/canon4.jpg" alt=""  class="image-list">
+                        <img src="${pageContext.request.contextPath}/Images/canon5.jpg" alt=""  class="image-list">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="breadcrumb">
+                    <span><a href="#">Home</a></span>
+                    <span><a href="#">Product</a></span>
+                    <span class="active">Printer</span>
+                </div>
+
+                <div class="product">
+                    <div class="product-title">
+                        <h2>Cannon All In One Printer</h2>
+                    </div>
+                    <div class="product-rating">
+                        <span><i class="bx bxs-star"></i></span>
+                        <span><i class="bx bxs-star"></i></span>
+                        <span><i class="bx bxs-star"></i></span>
+                        <span><i class="bx bxs-star"></i></span>
+                        <span><i class="bx bxs-star"></i></span>
+                        <span class="review">(355 Review)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="offer-price">$399.00</span>
+                        <span class="sale-price">$499.00</span>
+                    </div>
+
+                    <div class="product-details">
+                        <h3>What You Get</h3>
+                        <p>Presenting cost-effective borderless A3 photo printing solutions perfectly suited for design drawing, stunning photos, and versatile media printing, with the Epson L18050
+
+                            Print outstanding photos up to A3+ size with this wireless 6-colour multifunction printer at ultra-low running costs. High capacity 6-colour 70ml Dye Based ink bottles. The enhanced quality of prints produced by its 6-colour inks makes the L18050 the perfect choice for creative enthusiasts and professional photo studios. This sleek and stylish black model is economical and allows you to print up to 2,100 high-quality, long-lasting, borderless 4R photos. Direct Printing onto CDs/DVDs/PVC/ID Cards.</p>
+                        <h2><u>Specifications</u> </h2> <br>
+                        <strong>Printer Model 1: </strong><P> 5-colour Dye based Inks</P>
+                        <strong>Product Code: </strong><P> C1LCK001</P>
+                        <strong>Ink Color: </strong><P> Magenta, Black, Cyan, Light Cyan, Yellow</P>
+                        <strong>Function: </strong><P> Print</P>
+                        <strong>Number of Inks: </strong><P> 5 Colours</P>
+                    </div>
+
+                    <span class="divider"></span>
+
+                    <div class="product-btn-group">
+                        <div class="button buy-now"><i class='bx bxs-zap' ></i> Buy Now</div>
+                        <div class="button add-cart"><i class='bx bxs-cart' ></i> Add to Cart</div>
+                        <div class="button heart"><i class='bx bxs-heart' ></i> Add to Wishlist</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--script-->
+<script src="/JS/script.js"></script>
+
+
+</body>
+</html>

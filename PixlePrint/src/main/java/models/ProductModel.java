@@ -45,6 +45,12 @@ public class ProductModel{
 		return profilePicUrlFromPath;
 	}
 	
+	public ProductModel(int productId, String productName) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+	}
+
 	public ProductModel(String productName, String productDescription, double price, int quantity, String companyName, Part imagePart,
 			String printTechnology, String printSpeed, String printResulotion, String weight,
 			String dimensions, String operatingSystem, String supportedPageSize, String color, String printColor) {
@@ -65,6 +71,18 @@ public class ProductModel{
 		this.color = color;
 		this.printColor = printColor;
 	}
+	public ProductModel(int productId, String productName, String productDescription, double price, String printSpeed,
+			String dimensions, String color) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.price = price;
+		this.printSpeed = printSpeed;
+		this.dimensions = dimensions;
+		this.color = color;
+	}
+
 	public int getProductId() {
         return productId;
     }

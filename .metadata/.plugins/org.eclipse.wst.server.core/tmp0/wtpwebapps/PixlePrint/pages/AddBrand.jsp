@@ -53,18 +53,20 @@
         <% } %>
         <% } %>
     </div>
-    <h2>Add Brand</h2>
-    <form action="${pageContext.request.contextPath}/AddBrand" method="post">
-        <label for="companyName">Company Name:</label><br>
-        <input type="text" id="companyName" name="companyName" required><br><br>
-        <label for="country">Country:</label><br>
-        <input type="text" id="country" name="country"><br><br>
-        <label for="contactInformation">Contact Information:</label><br>
-        <input type="text" id="contactInformation" name="contactInformation"><br><br>
-        <label for="website">Website:</label><br>
-        <input type="text" id="website" name="website"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <h2>Add Brand</h2>
+        <form action="${pageContext.request.contextPath}/AddBrand" method="post">
+            <label for="companyName">Company Name:</label><br>
+            <input type="text" id="companyName" name="companyName" required><br><br>
+            <label for="country">Country:</label><br>
+            <input type="text" id="country" name="country"><br><br>
+            <label for="contactInformation">Contact Information:</label><br>
+            <input type="text" id="contactInformation" name="contactInformation"><br><br>
+            <label for="website">Website:</label><br>
+            <input type="text" id="website" name="website"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
     <div class="show-brands">
         <h1>List of Brands</h1>
         <table>

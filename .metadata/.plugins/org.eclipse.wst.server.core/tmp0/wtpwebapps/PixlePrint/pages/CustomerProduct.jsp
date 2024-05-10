@@ -5,9 +5,7 @@
 <html>
 <head>
 <title>Product Page</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
 .product {
 	border: 1px solid #ccc;
@@ -84,7 +82,7 @@
 					<div class="d-grid gap-2">
 						<form action="${pageContext.request.contextPath}/AddToCartServlet" method="post"	>
 							<input type="hidden" value="<%=product.getProductId()%>" name="productId"> 
-								<input type="hidden" value="<%=product.getProductName()%>" name="productName">
+							<input type="hidden" value="<%=product.getProductName()%>" name="productName">
 							<input type="hidden" value="1" name="quantity"> 
 							<input type="hidden" value="<%=session.getAttribute("userId")%>" name="userId">
 							<input type="hidden" value=<%=product.getPrice()%> name="price"> 
@@ -106,8 +104,7 @@
 			%>
 		</div>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <%@ include file="Footer.jsp"%>

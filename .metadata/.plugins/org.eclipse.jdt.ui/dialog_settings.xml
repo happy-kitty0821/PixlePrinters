@@ -65,8 +65,8 @@
 		<item key="OmitCallToSuper" value="false"/>
 	</section>
 	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
-		<item key="DIALOG_X_ORIGIN" value="386"/>
-		<item key="DIALOG_Y_ORIGIN" value="66"/>
+		<item key="DIALOG_X_ORIGIN" value="1140"/>
+		<item key="DIALOG_Y_ORIGIN" value="174"/>
 		<item key="DIALOG_WIDTH" value="574"/>
 		<item key="DIALOG_HEIGHT" value="708"/>
 		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|10.0|0|GTK|1|"/>

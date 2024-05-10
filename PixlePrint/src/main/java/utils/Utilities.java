@@ -51,18 +51,19 @@ package utils;
 		        + "SET quantity = quantity - ? "
 		        + "WHERE productId = ?";
 		//query to get the purchase history of a customer
-		public static final String GET_PURCHASE_HISTORY_OF_USER = "select"
+		public static final String GET_PURCHASE_HISTORY_OF_USER = "select "
 		        + "p.purchaseId, "
 		        + "p.DateTime, "
 		        + "p.quantity, "
 		        + "p.totalAmount, "
 		        + "pr.productName, "
 		        + "pr.price, "
+		        + "p.purchaseStatus, "
 		        + "pr.productImage "
 		        + "FROM Purchase p JOIN "
 		        + "Product pr ON p.productId = pr.productId "
 		        + "WHERE "
-		        + "p.userId = ?;";
+		        + "p.userId = ?";
 		//query to get the userId based on username
 		public static final String GET_USER_ID = "select * from User where userName = ?";
 
@@ -73,6 +74,8 @@ package utils;
 				+ " WHERE c.userId = ?";	
 		//query to get search result
 		public static final String SEARCH_RESULT_QUERY = "SELECT * FROM Product WHERE productName LIKE ?";
+		//delete product query
+		public static final String DELETE_PRODUCT = "delete from Product where productId = ?";
 		
 		//defining a set of constant values
 		public static final String name = "name";
@@ -125,6 +128,7 @@ package utils;
 		public static final String PRODUCT_SUCCESSFULLU_ADD_MESSAGE = "The product was added successfully";
 		public static final String PRODUCT_ALREADY_EXISTS_MESSAGE = "This product already exists";
 		public static final String USERANME_ALREADY_EXISTS_MESSAGE = "The user already exists";
+		public static final String PRODUCT_DELETED_MESSAGE = "The Product was Deleted Successfully";
 		// End string messages 
 		
 		// Start JSP Route
@@ -137,6 +141,7 @@ package utils;
 		public static final String ADD_BRAND = "/pages/AddBrand.jsp";
 		public static final String ADD_PRODUCT_PAGE = "/pages/AddProducts.jsp";
 		public static final String SEE_ALL_USERS_PAGE = "/pages/DisplayCustomers.jsp";
+		public static final String ADMIN_PRODUCT_PAGE = "/pages/AdminProducts.jsp";
 		// End JSP Route
 		
 		// Start Servlet Route
@@ -144,4 +149,11 @@ package utils;
 		public static final String LOGIN_SERVLET = "/UserLogin";
 		public static final String ADMIN_HOME_SERVLET = "/AdminHomeServlet";
 		// End Servlet Route
+
+		public static final String Edit_Product = "update Product set productName = ?, productDesc=?, price=?, printSpeed=?, color=?, dimensions=? where productId = ?";
+//				+ ""
+//				+ "SET productName = ?,"
+//				+ "WHERE productId = ?";
+		public static final String CREATE_MYSQL_DUMP = "sudo mysqldump -u root -p PixlePrint > dump_file.sql";
+
 	}

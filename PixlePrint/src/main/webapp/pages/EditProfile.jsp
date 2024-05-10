@@ -17,7 +17,7 @@
             <input type="text" name ="" placeholder = "User Name">
             <input type="email" name ="" placeholder = "Email ID">
             <input type="text" name ="" placeholder = "Phone Number">
-            <input type="text" name ="" placeholder = "Date of Birth">
+            <input type="text" name ="" placeholder = "fullName">
             <input type="text" name ="" placeholder = "Gender">
             <button style="float: left;margin:10px 0 0 18.2%;">CANCEL</button>
             <button style="float: right;margin:10px 18.2% 0 0;">DONE</button>
@@ -26,3 +26,4 @@
     </center>
 </body>
 </html>
+

@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import models.BrandModel;
 import models.CartModel;
 import models.ContactUsMessageModel;
 import models.ProductModel;
+import models.PurchaseHistroyModel;
 import models.PurchaseModel;
 import models.UserCartModel;
 import models.UserModel;
@@ -457,4 +459,85 @@ public class DatabaseController {
 			return -1;
 		}
 	}
+
+	public int editProduct(ProductModel product) {
+	    try (Connection con = getConnection();
+	         PreparedStatement statement = con.prepareStatement(Utilities.Edit_Product)) {
+	        statement.setString(1, product.getProductName());
+	        statement.setString(2, product.getProductDescription());
+	        statement.setDouble(3, product.getPrice());
+	        statement.setString(4, product.getPrintSpeed());
+	        statement.setString(5, product.getColor());
+	        statement.setString(6, product.getDimensions());
+	        statement.setInt(7, product.getProductId());
+	        System.out.println(product.getProductDescription());
+	        int rowsUpdated = statement.executeUpdate();
+	        System.out.println("Rows updated: " + rowsUpdated);
+	        
+	        return rowsUpdated; // Return the number of rows updated
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	        return -1; // Return an error code if an exception occurs
+	    }
+	}
+
+	public List<PurchaseHistroyModel> getUserPruchaseHistroy(int userId){
+		List<PurchaseHistroyModel> purchaseHistroy = new ArrayList<>();
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(Utilities.GET_PURCHASE_HISTORY_OF_USER);
+			statement.setInt(1, userId);
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next()) {
+				int purchaseId = resultSet.getInt("purchaseId");
+				Timestamp dateTime = resultSet.getTimestamp("dateTime");
+				int quantity = resultSet.getInt("quantity");
+				Double totalAmount = resultSet.getDouble("totalAmount");
+				String productName = resultSet.getString("productName");
+				Double price = resultSet.getDouble("price");
+				String purchaseStatus = resultSet.getString("purchaseStatus");
+				String productImage = resultSet.getString("productImage");
+				
+				PurchaseHistroyModel purchaseHistroyModel = new PurchaseHistroyModel(purchaseId, dateTime, quantity, totalAmount,productName, price, 
+						purchaseStatus, productImage);
+				purchaseHistroy.add(purchaseHistroyModel);
+			}
+		}
+		catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return purchaseHistroy;
+	}
+	public int deleteProducts(int productId) {
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(Utilities.DELETE_PRODUCT);
+			statement.setInt(1, productId);
+			int result = statement.executeUpdate();
+			System.out.print("delete product result is " + result);
+			return result > 0 ? 1 : 0;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+		
+	}
+//	public int editProduct(ProductModel product) {
+//		// TODO Auto-generated method stub
+//		try(Connection con = getConnection()){
+//			PreparedStatement statement = con.prepareStatement(Utilities.Edit_Product);
+//			statement.setString(1, product.getProductName());
+//			statement.setInt(2, product.getProductId());
+//			System.out.println(product.getProductName());
+//			System.out.println(product.getProductId());
+//		
+//		} catch (ClassNotFoundException | SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return -1;
+//		}
+//		return 0;
+//	}
+	
 }

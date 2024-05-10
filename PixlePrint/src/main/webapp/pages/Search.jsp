@@ -60,7 +60,7 @@
         } else {
         %>
         <div class="col">
-            <p>No results found.</p>
+            
         </div>
         <% 
         }

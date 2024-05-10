@@ -1,0 +1,36 @@
+<%@ page import="java.util.List" %>
+<%@ page import="models.PurchaseHistroyModel" %>
+<%@ page import="utils.Utilities" %>
+<%@ include file="Header.jsp" %>
+
+<body>
+    <h1>Purchase History</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Purchase ID</th>
+                <th>Date Time</th>
+                <th>Quantity</th>
+                <th>Total Amount</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Purchase Status</th>
+                <th>Product Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (PurchaseHistroyModel purchase : (List<PurchaseHistroyModel>) request.getAttribute("purchaseHistroy")) { %>
+                <tr>
+                    <td><%= purchase.getPurchaseId() %></td>
+                    <td><%= purchase.getDateTime() %></td>
+                    <td><%= purchase.getQuantity() %></td>
+                    <td><%= purchase.getTotalAmount() %></td>
+                    <td><%= purchase.getProductName() %></td>
+                    <td><%= purchase.getPrice() %></td>
+                    <td><%= purchase.getPurchaseStatus() %></td>
+                    <td><img src="<%= request.getContextPath() %>/Uploads/ProductImages/<%= purchase.getProductImage() %>" alt="<%= purchase.getProductName() %>" style="width: 100px; height: 100px;"></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>

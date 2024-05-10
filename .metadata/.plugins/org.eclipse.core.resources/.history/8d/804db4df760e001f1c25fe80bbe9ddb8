@@ -1,0 +1,55 @@
+package controller.servlets;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/DeleteProductServlet")
+public class DeleteProductServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get productId parameter from the request
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        
+        // Define database connection parameters
+        String url = "jdbc:mysql://localhost:3306/PixlePrint";
+        String username = "your_username";
+        String password = "your_password";
+        
+        try (
+            // Create a database connection
+            Connection conn = DriverManager.getConnection(url, username, password);
+            // Prepare a statement to delete the product
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Product WHERE productId = ?")
+        ) {
+            // Set the productId in the prepared statement
+            stmt.setInt(1, productId);
+            
+            // Execute the deletion query
+            int rowsAffected = stmt.executeUpdate();
+            
+            // Check if the product was deleted successfully
+            if (rowsAffected > 0) {
+                request.setAttribute("successMessage", "Product deleted successfully.");
+            } else {
+                request.setAttribute("errorMessage", "Failed to delete product.");
+            }
+        } catch (SQLException e) {
+            // Handle any SQL errors
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Database error: " + e.getMessage());
+        }
+        
+        // Redirect back to the product management page
+        response.sendRedirect(request.getContextPath() + "/pages/AdminProducts.jsp");
+    }
+}

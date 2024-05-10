@@ -17,45 +17,65 @@
 </head>
 <body>
 	<!-- Featured Categories -->
-	<div class="categories">
-		<div class="small-container">
-			<div class="row">
-				<!-- Images for featured categories -->
-				<div class="col3">
-					<img src="${pageContext.request.contextPath}/Images/Product3.jpg" />
-				</div>
-				<div class="col3">
-					<img src="${pageContext.request.contextPath}/Images/Product1.jpg" />
-				</div>
-				<div class="col3">
-					<img src="${pageContext.request.contextPath}/Images/Product4.jpg" />
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Offer Section -->
-	<div class="offer">
-		<div class="small-container">
-			<div class="row">
-				<!-- Offer details and image -->
-				<div class="col2">
-					<img
-						src="${pageContext.request.contextPath}/Images/Canon_All_in_one.jpg"
-						class="offer Image" />
-				</div>
-				<div class="col2">
-					<p>Exclusively available on Printer Hub</p>
-					<h1>Canon all in One Printer</h1>
-					<small>The Canon All in One Printer has all the function
-						you need. It can print paper at the best quality and can also scan
-						the documents you need</small> <br /> <br /> <a
-						href="${pageContext.request.contextPath}/Html/CanonAllInOne.jsp"
-						class="btn">Buy Now &#8594;</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="main">
+      <div class="container">
+        <div class="row">
+          <!-- Text and image content -->
+          <div class="col2">
+            <h1>
+              Best Printers for you <br />
+              Shop with us
+            </h1>
+            <p>
+              Now make your office and academic work easier and convenient by connecting with us!
+            </p>
+            <br />
+            <a href="${pageContext.request.contextPath}/DisplayProductToCustomerServlet" class="btn">Explore Now &#8594;</a>
+          </div>
+          <div class="col2">
+            <img src="https://i.pinimg.com/564x/a9/29/0b/a9290b9a15126e305dd8e98ed1a01339.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Featured Categories -->
+    <div class="categories">
+      <div class="small-container">
+        <div class="row">
+          <!-- Images for featured categories -->
+          <div class="col3">
+            <img src="${pageContext.request.contextPath}/Images/Product3.jpg" />
+          </div>
+          <div class="col3">
+            <img src="${pageContext.request.contextPath}/Images/Product1.jpg" />
+          </div>
+          <div class="col3">
+            <img src="${pageContext.request.contextPath}/Images/Product4.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <!-- Offer Section -->
+    <div class="offer">
+      <div class="small-container">
+        <div class="row">
+          <!-- Offer details and image -->
+          <div class="col2">
+            <img src="${pageContext.request.contextPath}/Images/Canon_All_in_one.jpg" class="offer Image" />
+          </div>
+          <div class="col2">
+            <p>Exclusively available on Printer Hub</p>
+            <h1>Canon all in One Printer</h1>
+            <small>The Canon All in One Printer has all the function you need. It can print paper at the best quality and can also scan the documents you need</small>
+            <br />
+            <br />
+            <a href="${pageContext.request.contextPath}/pages/productdetail.jsp" class="btn">Buy Now &#8594;</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
 	<!-- Footer Section -->
 	<div class="footer">

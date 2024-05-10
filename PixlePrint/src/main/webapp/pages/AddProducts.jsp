@@ -9,69 +9,91 @@
 <title>Add Product</title>
 
 <style>
-:root {
-	--color-primary: cornflowerblue; /* #7380ec */
-	--color-danger: coral; /* #ff7782 */
-	--color-success: mediumspringgreen; /* #41f1b6 */
-	--color-warning: sandybrown; /* #ffbb55 */
-	--color-white: white; /* #fff */
-	--color-info-dark: cadetblue; /* #7d8da1 */
-	--color-info-light: lavender; /* #dce1eb */
-	--color-dark: midnightblue; /* #363949 */
-	--color-light: rgba(132, 139, 200, 0.18); /* rgba(132,139,200,0.18) */
-	--color-primary-variant: midnightblue; /* #111e88 */
-	--color-dark-variant: slategray; /* #677483 */
-	--color-background: gainsboro; /* #f6f6f9 */
-	--card-border-radius: 32px; /* 2rem = 2 * 16px */
-	--border-radius-1: 6.4px; /* 0.4rem = 0.4 * 16px */
-	--border-radius-2: 19.2px; /* 1.2rem = 1.2 * 16px */
-	--card-padding: 28.8px; /* 1.8rem = 1.8 * 16px */
-	--padding-1: 19.2px; /* 1.2rem = 1.2 * 16px */
-	--box-shadow: 0 32px 48px var(--color-light);
-	/* 2rem = 2 * 16px, 3rem = 3 * 16px */
-}
 
 body {
-	background-color: var(--color-background);
-	color: var(--color-dark);
-	font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f6f6f9;
+    color: #363949;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-	width: 1000px;
-	margin: 0 auto;
-	margin-top: 100px;
-	padding: var(--padding-1);
-	background-color: var(--color-white);
-	border-radius: var(--card-border-radius);
-	box-shadow: var(--box-shadow);
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 32px;
+    box-shadow: 0 32px 48px rgba(132, 139, 200, 0.18);
+}
+
+.form-messages {
+    margin-bottom: 20px;
+}
+
+.success-message, .error-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6.4px;
+}
+
+.success-message {
+    background-color: #41f1b6;
+    color: #fff;
+}
+
+.error-message {
+    background-color: #ff7782;
+    color: #fff;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .form-group {
-	margin-bottom: var(--padding-1);
+    margin-bottom: 20px;
 }
 
 .form-group label {
-	display: block;
-	margin-bottom: var(--padding-1);
-	color: var(--color-dark);
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-.form-group input, .form-group textarea, .form-group select {
-	width: 40%;
-	padding: var(--padding-1);
-	border: 1px solid var(--color-info-dark);
-	border-radius: var(--border-radius-1);
-	box-sizing: border-box; /* Include padding in width calculation */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #7d8da1;
+    border-radius: 6.4px;
+    box-sizing: border-box;
+}
+
+.form-group select {
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="%237d8da1" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat right 10px center/14px auto;
+    padding-right: 30px;
 }
 
 .form-group button {
-	padding: var(--padding-1);
-	border: none;
-	border-radius: var(--border-radius-1);
-	background-color: var(--color-primary);
-	color: var(--color-white);
-	cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6.4px;
+    background-color: cornflowerblue;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #111e88;
 }
 </style>
 </head>

@@ -7,42 +7,47 @@
     <meta charset="UTF-8">
     <title>Add To Cart</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Cart.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/11d376cef2.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container mt-5">
         <h1 class="text-left mb-5">Best Seller</h1>
-        <div id="root">
+        <div class="row">
             <% 
             List<UserCartModel> userCartDetails = (List<UserCartModel>) request.getAttribute("userCartDetails");
             if (userCartDetails != null && !userCartDetails.isEmpty()) {
                 for (UserCartModel cartItem : userCartDetails) {
             %>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="${pageContext.request.contextPath}/Uploads/ProductImages/<%= cartItem.getProductImage() %>" alt="<%= cartItem.getProductName() %>">
-                </div>
-                <div class="product-details">
-                    <h2><%= cartItem.getProductName() %></h2>
-                    <p>Quantity: <span id="quantity_<%= cartItem.getProductId() %>"><%= cartItem.getQuantity() %></span></p>
-                    <p>Price: <%= cartItem.getPrice() %></p>
-                    <div class="quantity-control">
-                        <button onclick="decreaseQuantity(<%= cartItem.getProductId() %>)">-</button>
-                        <button onclick="increaseQuantity(<%= cartItem.getProductId() %>)">+</button>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img src="${pageContext.request.contextPath}/Uploads/ProductImages/<%= cartItem.getProductImage() %>" class="card-img-top" alt="<%= cartItem.getProductName() %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= cartItem.getProductName() %></h5>
+                        <p class="card-text">Quantity: <span id="quantity_<%= cartItem.getProductId() %>"><%= cartItem.getQuantity() %></span></p>
+                        <p class="card-text">Price: <%= cartItem.getPrice() %></p>
+                        <div class="d-flex justify-content-between">
+                            <div class="quantity-control">
+                                <button onclick="decreaseQuantity(<%= cartItem.getProductId() %>)" class="btn btn-sm btn-outline-primary">-</button>
+                                <button onclick="increaseQuantity(<%= cartItem.getProductId() %>)" class="btn btn-sm btn-outline-primary">+</button>
+                            </div>
+                            <form action="${pageContext.request.contextPath}/CheckoutServlet" method="post">
+                                <input type="hidden" name="productId" value="<%= cartItem.getProductId() %>">
+                                <input type="hidden" name="quantity" value="<%= cartItem.getQuantity() %>">
+                                <input type="hidden" name="userId" value="<%= session.getAttribute("userId") %>">
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                            </form>
+                        </div>
                     </div>
-                    <form action="CheckoutServlet" method="post">
-                        <input type="hidden" name="productId" value="<%= cartItem.getProductId() %>">
-                        <input type="hidden" name="quantity" value="<%= cartItem.getQuantity() %>">
-                        <input type="hidden" name="userId" value="<%= session.getAttribute("userId") %>">
-                        <button type="submit" class="buy-now-btn">Buy Now</button>
-                    </form>
                 </div>
             </div>
             <%
                 }
             } else {
             %>
-            <p>Your cart is empty</p>
+            <div class="col">
+                <p>Your cart is empty</p>
+            </div>
             <%
             }
             %>
@@ -81,5 +86,7 @@
             });
         }
     </script>
+    <!-- Add Bootstrap JavaScript and dependencies (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
