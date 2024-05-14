@@ -9,6 +9,25 @@ body {
     font-family: 'system-ui', 'Spartan', sans-serif;
 }
 
+/* Add styles for navigation links */
+.header .navbar a {
+    margin: 0 1.5rem;
+    font-size: 1.7rem;
+    color: #222;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Styles for navigation links on the home page */
+body.home-page .header .navbar a:hover,
+body.home-page .header .navbar a.active {
+    color: #2d7f85; /* Change the hover/active color */
+}
+.header .navbar a.active,
+.header .navbar a:hover {
+    color: #2d7f85;
+}
+
 .header{
     position: sticky;
     top: 0;

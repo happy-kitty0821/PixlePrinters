@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
+/* 
   *{
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -13,7 +13,14 @@
     border: none;
     text-transform: capitalize;
     transition: all .1s linear; 
+} */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
 }
+
 
 html{
     font-size: 62.5%;
@@ -37,13 +44,15 @@ span{
     color:rgba(2, 4, 4, 0.2);
 }
 
-.heading{
+.heading {
     text-align: center;
     color: #222;
-    margin-bottom: 3rem;
-    font-size: 4rem;
+    margin-bottom: 200em;
+    font-size: 3rem; /* Increase the font size to 3rem or adjust as needed */
 }
 
+
+ 
 .btn{
     display:inline-block;
     margin-top:1rem;
@@ -66,7 +75,7 @@ span{
         transform: translateY(-4rem) scale(0.4);
     }
 }
-.header{
+./* header{
     position: sticky;
     top: 0;
     left: 0;
@@ -115,14 +124,15 @@ span{
 }
 .header #menu-btn{
     display: none;
-}
+} */
 
-*{
+/* *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
-}.Para_blog{
+} */
+.Para_blog{
     padding: 3rem 8rem;
 }
 .Para_blog p{
@@ -440,7 +450,7 @@ span{
     text-align: center;
 }
 
-.message-from-backend {
+/* .message-from-backend {
   margin-top: 20px;
   margin-left: 400px;
 }
@@ -462,3 +472,29 @@ span{
   background-color: #f8d7da;
   border-color: #f5c6cb;
 }
+
+ */
+.message-from-backend {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+

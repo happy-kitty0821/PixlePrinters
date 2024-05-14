@@ -76,6 +76,9 @@ package utils;
 		public static final String SEARCH_RESULT_QUERY = "SELECT * FROM Product WHERE productName LIKE ?";
 		//delete product query
 		public static final String DELETE_PRODUCT = "delete from Product where productId = ?";
+		//query to get the product details;
+		public static final String GET_PRODUCT_DETAILS = "select * from Product where productId = ?";
+		
 		
 		//defining a set of constant values
 		public static final String name = "name";

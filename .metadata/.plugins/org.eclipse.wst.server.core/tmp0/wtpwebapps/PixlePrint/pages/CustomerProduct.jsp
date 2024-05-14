@@ -76,9 +76,11 @@
 					<h2><%=product.getProductName()%></h2>
 					<p><%=product.getProductDescription()%></p>
 					<p>Price: <%=product.getPrice()%></p>
+					<a href="${pageContext.request.contextPath}/DisplayProductDetailServlet?productId=<%=product.getProductId()%> ">
 					<img
 						src="${pageContext.request.contextPath}/Uploads/ProductImages/<%= product.getProductImage() %>"
 						alt="<%= product.getProductName() %>" class="img-fluid">
+					</a>
 					<div class="d-grid gap-2">
 						<form action="${pageContext.request.contextPath}/AddToCartServlet" method="post"	>
 							<input type="hidden" value="<%=product.getProductId()%>" name="productId"> 

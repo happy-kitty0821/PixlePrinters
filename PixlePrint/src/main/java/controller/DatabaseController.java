@@ -320,7 +320,7 @@ public class DatabaseController {
 		return userDetails;
 	}
 	public int getUserId(String userName) {
-	    int user_id = -1; // Default value if no user is found
+	    int user_id = -1; //default value if no user is found
 	    try (Connection con = getConnection()) {
 	        PreparedStatement statement = con.prepareStatement(Utilities.GET_USER_ID);
 	        statement.setString(1, userName); // Set the user_name parameter
@@ -333,6 +333,12 @@ public class DatabaseController {
 	        e.printStackTrace();
 	    }
 	    return user_id;
+	}
+	
+	public String getAccountType(int userId) {
+		String accountType = null;
+		return accountType;
+		
 	}
 	
 	public List<ContactUsMessageModel> getContactUsMessage(){
@@ -448,10 +454,10 @@ public class DatabaseController {
 			int semiResult = statement.executeUpdate();
 			int result = updateStockAfterPurchase(purchaseModel.getQuantity(), purchaseModel.getProductid());
 			if(result==1 && semiResult > 0) {
-				return 1;
+				return 1;//purchase successfull
 			}
 			else {
-				return -1;
+				return -1;//purchase failed
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -539,5 +545,44 @@ public class DatabaseController {
 //		}
 //		return 0;
 //	}
+	
+	public List<ProductModel> getProductDetails(int product_Id){
+		System.out.println("product detail method call");
+	    List<ProductModel> productDetails = new ArrayList<>();
+	    try(Connection con = getConnection()){
+	        PreparedStatement statement = con.prepareStatement(Utilities.GET_PRODUCT_DETAILS);
+	        statement.setInt(1, product_Id);
+	        ResultSet resultSet = statement.executeQuery();
+	        while(resultSet.next()) {
+	            int productId = resultSet.getInt("productId");
+	            String productName = resultSet.getString("productName");
+	            String productDesc = resultSet.getString("productDesc");
+	            Double price = resultSet.getDouble("price");
+	            int quantity = resultSet.getInt("quantity");
+	            String companyName = resultSet.getString("companyName");
+	            String productImage = resultSet.getString("productImage");
+	            String printTechnology = resultSet.getString("printTechnology");
+	            String printSpeed = resultSet.getString("printSpeed");
+	            String printResolution = resultSet.getString("printResulotion");
+	            String weight = resultSet.getString("weight");
+	            String dimensions = resultSet.getString("dimensions");
+	            String operatingSystem = resultSet.getString("operatingSystem");
+	            String supportedPageSize = resultSet.getString("supportedPageSize");
+	            String color = resultSet.getString("color");
+	            String printColor = resultSet.getString("printColor");
+
+	            ProductModel productModel = new ProductModel(productId, productName, productDesc, price, 
+	            quantity, companyName, productImage, printTechnology, printSpeed, printResolution, weight, dimensions, 
+	            operatingSystem, supportedPageSize, color, printColor);
+	            productDetails.add(productModel);
+	        }
+	    }
+	    catch (ClassNotFoundException | SQLException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	    }
+	    return productDetails;
+	}
+
 	
 }

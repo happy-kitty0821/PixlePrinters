@@ -11,7 +11,7 @@
     
 </head>
 <body>
-	<div style="width:400px;">
+	<div style="width:400px; height: 850px;">
 	      <aside id="sidebar">
         <div class="sidebar-title">
           <div class="sidebar-brand">

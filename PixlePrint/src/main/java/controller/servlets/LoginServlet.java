@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Your existing code for handling GET requests
+
     	response.sendRedirect(request.getContextPath() + Utilities.HOME_PAGE);
     }
 
@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             int userId = dbController.getUserId(username);
             session.setAttribute("userId", userId); //setting the maximum session timeout to 30 minutes
             Cookie userCookie = new Cookie("username", username);
-            userCookie.setMaxAge(30 * 60); // Cookie expires after 30 minutes
+            userCookie.setMaxAge(30 * 60); //cookie expires after 30 minutes
             response.sendRedirect(request.getContextPath() + Utilities.HOME_PAGE);
         } 
         else if (loginResult == 5) {

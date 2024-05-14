@@ -50,7 +50,7 @@ public class AddBrandServlet extends HttpServlet {
 		System.out.println("Add brand result is : "+result);
 		if (result == 1) {
 		    request.setAttribute(Utilities.SUCCESS_MESSAGE, Utilities.SUCCESSFULLY_ADD_BRAND_MESSAGE);
-		    request.getRequestDispatcher(Utilities.ADD_BRAND).forward(request, response);
+		    request.getRequestDispatcher( Utilities.ADD_BRAND).forward(request, response);
 		} 
 		else if (result == 0) {
 		    request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.INCORRECT_FORM_DATA_MESSAGE);

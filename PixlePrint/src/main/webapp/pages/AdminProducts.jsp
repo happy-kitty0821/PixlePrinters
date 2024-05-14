@@ -11,12 +11,11 @@
 <title>Product Management</title>
 <style>
 .container {
-	max-width: 80%;
+	width: 500px;
 	margin: 20px auto;
-	padding: 20px;
-	background-color: var(--color-white);
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-top: -800px;
+	padding: 50px;
+	background-color: var(--color-white);	
 }
 
 .alert {
@@ -38,17 +37,12 @@
 	border-color: #f5c6cb;
 }
 
-.btn-edit, .btn-delete {
-	padding: 6px 12px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	display: inline-block;
-}
 
 .btn-edit {
+	padding: 100px;
 	background-color: #007bff;
 	color: #fff;
+	
 }
 
 .btn-delete {
@@ -57,18 +51,20 @@
 }
 
 table {
-	width: 100%;
+	width: 200%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 }
 
 th, td {
+	width: 200px;
 	padding: 10px;
 	border-bottom: 1px solid var(--color-background);
 	vertical-align: middle;
 }
 
 th {
+	width: 200px;
 	background-color: var(--color-primary);
 	color: var(--color-white);
 	text-align: left;
@@ -86,15 +82,7 @@ td {
 	display: inline-block;
 }
 
-.btn-edit {
-	background-color: var(--color-primary);
-	color: var(--color-white);
-}
 
-.btn-delete {
-	background-color: var(--color-danger);
-	color: var(--color-white);
-}
 
 td, img {
 	height: 100px;
@@ -174,19 +162,26 @@ td, img {
 					<td><%=product.getPrintSpeed()%></td>
 					<td><%=product.getPrintColor()%></td>
 					<td><%=product.getDimensions()%></td>
+					
 					<td>
-						<form method="post"
+					
+						 <form method="post"
 							action="${pageContext.request.contextPath}/UpdateProductServlet">
 							<input type="hidden" name="productId"
 								value="<%=product.getProductId()%>">
 							<button type="submit" class="btn-edit">Edit</button>
-						</form>
-						<form method="post"
+						</form> 
+						<%-- <form method="post"
 							action="${pageContext.request.contextPath}/DeleteProductServlet">
 							<input type="hidden" name="productId"
 								value="<%=product.getProductId()%>">
 							<button type="submit" class="btn-delete">Delete</button>
-						</form>
+						</form>  --%>
+						<form id="deleteForm<%=product.getProductId()%>" method="post" action="${pageContext.request.contextPath}/DeleteProductServlet">
+					    <input type="hidden" name="productId" value="<%=product.getProductId()%>">
+					    <button type="button" onclick="confirmDelete('<%=product.getProductName()%>', '<%=product.getProductId()%>')">Delete</button>
+					</form>
+															
 					</td>
 				</tr>
 				<%
@@ -198,5 +193,27 @@ td, img {
 		}
 		%>
 	</div>
+	<script>
+	function confirmDelete(productName, productId) {
+	    if (confirm(`Are you sure you want to delete ${productName}?`)) {
+	        // If user confirms, send AJAX request to delete servlet
+	        let xhr = new XMLHttpRequest();
+	        xhr.open('POST', `${pageContext.request.contextPath}/DeleteProductServlet`, true);
+	        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	        xhr.onreadystatechange = function() {
+	            if (xhr.readyState === 4 && xhr.status === 200) {
+	                // Handle the response from the servlet if needed
+	                // For example, you can reload the page to reflect the updated product list
+	                window.location.reload();
+	            }
+	        };
+	        xhr.send(`productId=${productId}`);
+	    }
+	}
+
+
+	</script>
+
+	
 </body>
 </html>

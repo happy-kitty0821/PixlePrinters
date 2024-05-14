@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="models.ProductModel" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +18,16 @@
     <jsp:include page="Header.jsp"></jsp:include>
 
     <div class="container mt-5">
+                        <%
+                        List<ProductModel> products = (List<ProductModel>) request.getAttribute("products");
+                        if (products != null) {
+                            for (ProductModel product : products) {
+                    %>
         <div class="row">
             <div class="col-lg-6">
                 <div class="product-image">
-                    <img src="${pageContext.request.contextPath}/Images/Product1.jpg" alt="" class="img-fluid">
+                	<img src="${pageContext.request.contextPath}/Uploads/ProductImages/<%= product.getProductImage() %>"
+                                    alt="<%= product.getProductName() %>" class="img-fluid">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -30,36 +37,47 @@
                         <span class="sale-price">NRP 10000.00</span>
                     </div>
                     <div class="product-details">
-    <h3>What You Get</h3>
-    <p>Presenting cost-effective borderless A3 photo printing solutions perfectly suited for design drawing, stunning photos, and versatile media printing, with the Epson L18050...</p>
-    <h2><u>Specifications</u></h2>
-    <strong>Printer Model 1:</strong> 5-colour Dye based Inks<br>
-    <strong>Product Code:</strong> C1LCK001<br>
-    <strong>Ink Color:</strong> Magenta, Black, Cyan, Light Cyan, Yellow<br>
-    <strong>Function:</strong> Print<br>
-    <strong>Number of Inks:</strong> 5 Colours<br>
-    <strong>Print Technology:</strong> Inkjet<br>
-    <strong>Print Speed:</strong> Up to 15 ppm (Black), up to 8 ppm (Color)<br>
-    <strong>Print Resolution:</strong> Up to 4800 x 1200 optimized dpi (Color), up to 1200 x 1200 rendered dpi (Black)<br>
-    <strong>Weight:</strong> 12.32 lbs<br>
-    <strong>Dimensions:</strong> 17.55 x 13.18 x 5.87 in<br>
-    <strong>Operating System:</strong> Windows, macOS<br>
-    <strong>Supported Page Size:</strong> A4, A5, A6, B5, DL<br>
-    <strong>Color:</strong> Black<br>
-    <strong>Print Color:</strong> Both<br>
-</div>
+                        <h3>What You Get</h3>
+                        <p><%=product.getProductDescription()%></p>
+                        <h2><u>Specifications</u></h2>
 
-
+                        <strong>Print Technology:</strong> <%=product.getPrintTechnology()%><br> 
+                        <strong>Print Speed:</strong> <%=product.getPrintSpeed()%><br> 
+                        <strong>Print Resolution:</strong> <%=product.getPrintResolution()%><br> 
+                        <strong>Weight:</strong> <%=product.getWeight()%><br> 
+                        <strong>Dimensions:</strong> <%=product.getDimensions()%><br>
+                        <strong>Operating System:</strong> <%=product.getOperatingSystem()%><br> 
+                        <strong>Supported Page Size:</strong> <%=product.getSupportedPageSize()%><br> 
+                        <strong>Printer Color:</strong> <%=product.getColor()%><br> 
+                        <strong>Print Color:</strong> <%=product.getPrintColor()%><br>
+                    </div>
                     <div class="product-btn-group">
-                        <button class="btn btn-primary">Add to Cart</button>
-                        <button class="btn btn-success">Buy Now</button>
+                        <form action="${pageContext.request.contextPath}/AddToCartServlet" method="post">
+                            <input type="hidden" value="<%=product.getProductId()%>" name="productId"> 
+                            <input type="hidden" value="<%=product.getProductName()%>" name="productName">
+                            <input type="hidden" value="1" name="quantity"> 
+                            <input type="hidden" value="<%=session.getAttribute("userId")%>" name="userId">
+                            <input type="hidden" value=<%=product.getPrice()%> name="price"> 
+                            <button type="submit" class="btn add-to-cart-btn" >Add to cart</button>
+                        </form>
+                        <br>
+                        <form action="${pageContext.request.contextPath}/PurchaseServlet" method="post">
+                            <input type="hidden" value="1" name="quantity"> 
+                            <input type="hidden" value=<%=product.getPrice()%> name="price"> 
+                            <input type="hidden" value=<%=product.getProductId()%> name="productId"> 
+                            <button type="submit" class="btn buy-now-btn" type="button">Buy Now</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+                                        
+                    <%
+                            }
+                        }
+                    %>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
 </html>

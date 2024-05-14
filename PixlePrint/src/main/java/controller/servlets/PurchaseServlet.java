@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.DatabaseController;
 import models.PurchaseModel;
+import utils.Utilities;
 
 /**
  * Servlet implementation class PurchaseServlet
@@ -49,6 +50,13 @@ public class PurchaseServlet extends HttpServlet {
         	PurchaseModel purchaseModel = new PurchaseModel(quantity, totalPrice, userId, productId);
         	int result = dbController.purchaseProducts(purchaseModel, totalPrice);
         	System.out.println("purchase result is :  " + result);
+        	 if (result == 1) {
+                 request.setAttribute(Utilities.SUCCESS_MESSAGE, "Proudct Purchase Successfull");
+             } 
+             else {
+                 request.setAttribute(Utilities.ERROR_MESSAGE, "Failed to purchase product");
+             }
+        	 request.getRequestDispatcher("/DisplayProductToCustomerServlet").forward(request, response);
         }
         else {
         	System.out.println("user is not logged in");

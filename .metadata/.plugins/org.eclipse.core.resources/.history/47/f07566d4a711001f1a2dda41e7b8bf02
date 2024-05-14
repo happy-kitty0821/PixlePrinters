@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+function confirmDelete(productName) {
+    if (confirm(`Are you sure you want to delete ${productName}?`)) {
+        // If user confirms, submit the form
+        document.currentScript.parentElement.submit();
+    }
+}

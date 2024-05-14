@@ -51,6 +51,7 @@
                 <a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
             <% } %>
         </nav>
+        
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
             <a href="${pageContext.request.contextPath}/UserProfile" class="fas fa-user-circle"></a> 

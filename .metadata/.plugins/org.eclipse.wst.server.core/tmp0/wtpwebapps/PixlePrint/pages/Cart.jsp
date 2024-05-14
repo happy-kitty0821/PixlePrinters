@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-left mb-5">Best Seller</h1>
+        <h1 class="text-left mb-5">User Cart </h1>
         <div class="row">
             <% 
             List<UserCartModel> userCartDetails = (List<UserCartModel>) request.getAttribute("userCartDetails");
