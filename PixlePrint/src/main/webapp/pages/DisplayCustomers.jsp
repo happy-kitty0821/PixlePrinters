@@ -10,7 +10,6 @@
     <title>Display Customers</title>
 </head>
 <body>
-    <h1>Customer Details</h1>
     <table>
         <thead>
             <tr>

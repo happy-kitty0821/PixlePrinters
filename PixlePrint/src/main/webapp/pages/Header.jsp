@@ -44,7 +44,7 @@
             <a href="${pageContext.request.contextPath}/pages/Contact.jsp">About
                 Us</a> 
             <% 
-            if (session.getAttribute("username") == null) {
+            if (session.getAttribute("username") == null || "Admin".equals(session.getAttribute("accountType"))) {
             %>
                 <a href="${pageContext.request.contextPath}/pages/Login.jsp">Login</a>
             <% } else { %>

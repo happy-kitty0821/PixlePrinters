@@ -71,7 +71,7 @@
             <small>The Canon All in One Printer has all the function you need. It can print paper at the best quality and can also scan the documents you need</small>
             <br />
             <br />
-            <a href="${pageContext.request.contextPath}/pages/productdetail.jsp" class="btn">Buy Now &#8594;</a>
+            <a href="${pageContext.request.contextPath}/DisplayProductToCustomerServlet" class="btn">Buy Now &#8594;</a>
           </div>
         </div>
       </div>

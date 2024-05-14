@@ -10,6 +10,21 @@ body {
 	background-color: #1d2634;
 	color: #9e9ea4;
 	font-family: "Montserrat", sans-serif;
+    display: flex; /* Use flexbox for layout */
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Main content styles */
+.main-content {
+    flex: 1; /* Allow the main content to grow to fill the available space */
+    padding: 20px; /* Add padding to the main content */
 }
 
 /* Style the heading */

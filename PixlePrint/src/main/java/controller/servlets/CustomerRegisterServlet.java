@@ -61,9 +61,21 @@ public class CustomerRegisterServlet extends HttpServlet {
 		    request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.INCORRECT_FORM_DATA_MESSAGE);
 		    request.getRequestDispatcher(Utilities.REGISTER_PAGE).forward(request, response);
 		} 
-		else {
+		else if (result == -1){
 		    request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.SERVER_ERROR_MESSAGE);
 		    request.getRequestDispatcher(Utilities.REGISTER_PAGE).forward(request, response);
 		}
+		else if (result == -2) {
+	        request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.USERANME_ALREADY_EXISTS_MESSAGE);
+	        request.getRequestDispatcher(Utilities.REGISTER_PAGE).forward(request, response);
+	    } 
+		else if (result == -3) {
+	        request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.EMAIL_ERROR_MESSAGE);
+	        request.getRequestDispatcher(Utilities.REGISTER_PAGE).forward(request, response);
+	    }
+		else if (result == -4) {
+	        request.setAttribute(Utilities.ERROR_MESSAGE, Utilities.PHONE_NUMBER_ERROR_MESSAGE);
+	        request.getRequestDispatcher(Utilities.REGISTER_PAGE).forward(request, response);
+	    }
 	}
 }

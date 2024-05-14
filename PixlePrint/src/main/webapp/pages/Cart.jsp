@@ -25,13 +25,24 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= cartItem.getProductName() %></h5>
                         <p class="card-text">Quantity: <span id="quantity_<%= cartItem.getProductId() %>"><%= cartItem.getQuantity() %></span></p>
-                        <p class="card-text">Price: <%= cartItem.getPrice() %></p>
+							<%
+    							double price = cartItem.getPrice();
+							    int quantity = cartItem.getQuantity();
+    							double totalPrice = price * quantity;
+							%>
+								<p class="card-text">Total Price: NRP <%= totalPrice %></p>
+                        
                         <div class="d-flex justify-content-between">
                             <div class="quantity-control">
-                                <button onclick="decreaseQuantity(<%= cartItem.getProductId() %>)" class="btn btn-sm btn-outline-primary">-</button>
-                                <button onclick="increaseQuantity(<%= cartItem.getProductId() %>)" class="btn btn-sm btn-outline-primary">+</button>
+                                 <form action="${pageContext.request.contextPath}/RemoveCartServlet" method="post">
+                                <input type="hidden" name="productId" value="<%= cartItem.getProductId() %>">
+                                <input type="hidden" name="quantity" value="<%= cartItem.getQuantity() %>">
+                                <input type="hidden" name="userId" value="<%= session.getAttribute("userId") %>">
+                                <button type="submit" class="btn btn-primary">Remove Item</button>
+                            </form>
                             </div>
-                            <form action="${pageContext.request.contextPath}/CheckoutServlet" method="post">
+                            <form action="${pageContext.request.contextPath}/PurchaseServlet" method="post">
+                            	<input type="hidden" name="price" value=<%= cartItem.getPrice() %>>
                                 <input type="hidden" name="productId" value="<%= cartItem.getProductId() %>">
                                 <input type="hidden" name="quantity" value="<%= cartItem.getQuantity() %>">
                                 <input type="hidden" name="userId" value="<%= session.getAttribute("userId") %>">
@@ -53,39 +64,6 @@
             %>
         </div>
     </div>
-    <script>
-        function decreaseQuantity(productId) {
-            var quantityElement = document.getElementById('quantity_' + productId);
-            var currentQuantity = parseInt(quantityElement.innerText);
-            if (currentQuantity > 1) {
-                quantityElement.innerText = currentQuantity - 1;
-                updateQuantityInCart(productId, currentQuantity - 1);
-            }
-        }
-
-        function increaseQuantity(productId) {
-            var quantityElement = document.getElementById('quantity_' + productId);
-            var currentQuantity = parseInt(quantityElement.innerText);
-            quantityElement.innerText = currentQuantity + 1;
-            updateQuantityInCart(productId, currentQuantity + 1);
-        }
-
-        function updateQuantityInCart(productId, newQuantity) {
-            // Send an AJAX request to update the quantity in the cart
-            fetch('UpdateCartServlet?productId=' + productId + '&quantity=' + newQuantity, {
-                method: 'POST'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                    alert('Failed to update quantity in cart');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
     <!-- Add Bootstrap JavaScript and dependencies (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

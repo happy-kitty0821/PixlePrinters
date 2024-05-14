@@ -1,0 +1,44 @@
+<%@ include file="AdminSidebar.jsp"%>
+<%@ page import="java.util.List"%>
+<%@ page import="models.ProductModel"%>
+<%@ page import="utils.Utilities"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Display All Purchases</title>
+    <link rel="stylesheet" type="text/css" href="path/to/your/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Use flexbox for layout */
+        }
+
+        .main-body {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow the main content to grow to fill the available space */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Add more styles as needed */
+    </style>
+</head>
+<body>
+<div class="main-body">
+    <h1>Displaying all purchases</h1>
+    <!-- Add your table or other content here to display all purchases -->
+</div>
+</body>
+</html>

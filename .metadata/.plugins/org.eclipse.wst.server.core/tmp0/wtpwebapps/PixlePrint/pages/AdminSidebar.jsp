@@ -43,7 +43,7 @@
         </a>
     </li>
     <li class="sidebar-list-item">
-        <a href="inventory.jsp">
+        <a href="${pageContext.request.contextPath}/DisplayContactUsMessageServlet">
         	<span class="material-icons-outlined">mark_email_unread</span> Messages
         </a>
     </li>
@@ -53,7 +53,7 @@
         </a>
     </li>
     <li class="sidebar-list-item">
-        <a href="${pageContext.request.contextPath}/AdminSalesReportServlet">
+        <a href="${pageContext.request.contextPath}/PurchasesReportServlet">
             <span class="material-icons-outlined">view_kanban</span> Reports
         </a>
     </li>

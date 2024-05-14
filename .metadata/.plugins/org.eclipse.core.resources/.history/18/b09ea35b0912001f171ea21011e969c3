@@ -1,0 +1,23 @@
+package models;
+
+import java.io.Serializable;
+
+public class DisplayAllPurchase implements Serializable{
+	   private int purchaseId;
+	    private String DateTime;
+	    private int quantity;
+	    private double totalAmount;
+	    private String userName;
+	    private String email;
+	    private String phoneNumber;
+	    private String productName;
+	    private String productImage;
+	    private double price;
+	    private int productQuantity;
+	    private String companyName;
+	    private String printTechnology;
+	    private String color;
+	    private String printColor;
+	    private String purchaseStatus;
+
+}

@@ -1,0 +1,8 @@
+<%@ include file="AdminSidebar.jsp"%>
+<%@ page import="java.util.List"%>
+<%@ page import="models.ProductModel"%>
+<%@ page import="utils.Utilities"%>
+
+<body>
+	<div class=main-body></div>
+</body>

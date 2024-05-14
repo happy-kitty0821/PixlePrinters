@@ -1,7 +1,4 @@
 package utils;
-/**
-	 * @author aayush wanem limbu
-	 */
 	
 	public class Utilities {
 		
@@ -11,6 +8,9 @@ package utils;
 		//query for user registration
 		public static final String Customer_Registration = "INSERT INTO User (fullName, email, userName, phoneNumber, password, profilePicture) "
 		        + "VALUES (?,?,?,?,?,?)";
+		public static final String GET_USERNAME = "SELECT COUNT(*) FROM User WHERE userName = ?";
+		public static final String GET_PHONE = "SELECT COUNT(*) FROM student_info WHERE phoneNumber = ?";
+		public static final String GET_EMAIL = "SELECT COUNT(*) FROM student_info WHERE email = ?";
 		//query for admin registration 
 		public static final String Add_Admin = "INSERT INTO User (fullName, email, userName, accountType, phoneNumber, password, profilePicture)"
 		           + " VALUES (?,?,?,?,?,?,?)";
@@ -78,7 +78,30 @@ package utils;
 		public static final String DELETE_PRODUCT = "delete from Product where productId = ?";
 		//query to get the product details;
 		public static final String GET_PRODUCT_DETAILS = "select * from Product where productId = ?";
-		
+		//query to get the user account type
+		public static final String GET_USER_ACCOUNT_TYPE = "select accountType from User where userId =?";
+		//query to display all purchases
+		public static final String GET_ALL_PURCHASES = "SELECT"
+				+ "    p.purchaseId,"
+				+ "    p.DateTime,"
+				+ "    p.quantity,"
+				+ "    p.totalAmount,"
+				+ "    u.fullName AS userName,"
+				+ "    u.email,"
+				+ "    u.phoneNumber,"
+				+ "    pr.productName,"
+				+ "    pr.productImage,"
+				+ "    pr.price,"
+				+ "    pr.quantity AS productQuantity,"
+				+ "    pr.companyName,"
+				+ "    pr.printTechnology,"
+				+ "    pr.color,"
+				+ "    pr.printColor,"
+				+ "    p.purchaseStatus "
+				+ " FROM "
+				+ "    Purchase p"
+				+ "    JOIN User u ON p.userId = u.userId "
+				+ "    JOIN Product pr ON p.productId = pr.productId;";
 		
 		//defining a set of constant values
 		public static final String name = "name";
@@ -123,6 +146,9 @@ package utils;
 		public static final String SUCCESSFULLY_REGISTERED_MESSAGE = "The User Was Successfully Registered!";
 		public static final String INCORRECT_FORM_DATA_MESSAGE = "Please Check and Enter The Correct Form Data.";
 		public static final String SERVER_ERROR_MESSAGE = "An unexpected server error occurred.";
+		public static final String USERNAME_ERROR_MESSAGE = "Username is already registered.";
+		public static final String EMAIL_ERROR_MESSAGE = "Email is already registered.";
+		public static final String PHONE_NUMBER_ERROR_MESSAGE = "Phone Number is already registered.";
 		public static final String SUCCESS_MESSAGE = "successMessage";
 		public static final String ERROR_MESSAGE = "errorMessage";
 		public static final String INCORRECT_LOGIN_CREDENTIAL_ERROR = "Username or Password Incorrect";
@@ -158,5 +184,13 @@ package utils;
 //				+ "SET productName = ?,"
 //				+ "WHERE productId = ?";
 		public static final String CREATE_MYSQL_DUMP = "sudo mysqldump -u root -p PixlePrint > dump_file.sql";
+
+		public static final String DELETE_PRODUCT_BY_ID = "delete from Product where productId = ?";
+
+		public static final String UNABLE_TO_DELETE_PRODUCT = "Unable to delete product";
+
+		public static final String SUCCESS_DELETE_MESSAGE = "The priduct was deleted";
+
+		public static final String ERROR_DELETE_MESSAGE = "Unable to delete Product";
 
 	}

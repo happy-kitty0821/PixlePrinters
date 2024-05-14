@@ -5,7 +5,7 @@
     <head>
         <meta name = "viewport" content="width=device-width, initial-scale= 1.0">
         <title>Drop-down profile</title>
-        <link rel="stylesheet" href="../css/ProfilePage.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ProfilePage.css">
     </head>
 <body>  
     <div style="width:450px; height:570px; overflow: hidden; margin-top: 10px; margin-left: 1000px; margin-right: 20px;border: 2px solid #ccc; border-radius: 20px; padding: 50px;">
@@ -20,13 +20,27 @@
             <div style="left: 42px; top: 363px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Get Help</div>
             <div style="left: 42px; top: 396px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">See privacy policy</div>
             <div style="left: 42px; top: 429px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Feedback</div>
-            <div style="left: 42px; top: 462px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Log out</div>
+            <a style="left: 42px; top: 462px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word" href="${pageContext.request.contextPath}/LogoutServlet">
+            Logout</a>
+            </div>
             <div style="width: 71px; height: 71px; left: 50px; top: 79px; position: absolute; background: white; border-radius: 9999px"></div>
             <div style="left: 141px; top: 97px; position: absolute; color: #8B8888; font-size: 20px; font-family: Inter; font-weight: 400; line-height: 35px; word-wrap: break-word">User name email</div>
         </div>
     </div>
     <div class= "Profile">
-        <h1>Nabi Shrestha </h1>
+    <%
+    Cookie[] cookies = request.getCookies();
+    String username = null;
+    if(cookies != null) {
+        for(Cookie cookie : cookies) {
+            if(cookie.getName().equals("username")) {
+                username = cookie.getValue();
+                break;
+            }
+        }
+    }
+%>
+        <h1><%=username %></h1>
         <h2>User name email</h2>
         <h3>Following<h3>
     </div>

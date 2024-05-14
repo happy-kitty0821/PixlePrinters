@@ -1,0 +1,7 @@
+package models;
+
+import java.io.Serializable;
+
+public class AllPurchasesModel implements Serializable{
+	
+}

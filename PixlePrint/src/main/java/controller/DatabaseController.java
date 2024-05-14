@@ -16,6 +16,7 @@ import javax.servlet.http.Part;
 import org.mindrot.bcrypt.BCrypt;
 
 import models.AdminModel;
+import models.AllPurchasesModel;
 import models.BrandModel;
 import models.CartModel;
 import models.ContactUsMessageModel;
@@ -63,6 +64,34 @@ public class DatabaseController {
 	public int addNewCustomer(UserModel userModel) {
 		try (Connection con = getConnection()) {
 			PreparedStatement statement = con.prepareStatement(Utilities.Customer_Registration);
+			
+			 PreparedStatement checkUsernameSt = con.prepareStatement(Utilities.GET_USERNAME);
+	            checkUsernameSt.setString(1, userModel.getUserName());
+	            ResultSet checkUsernameRs = checkUsernameSt.executeQuery();
+	            checkUsernameRs.next();
+	            if (checkUsernameRs.getInt(1) > 0) {
+	                return -2; //username already exists
+	            }
+	            PreparedStatement checkPhoneSt = con.prepareStatement(Utilities.GET_PHONE);
+	            checkPhoneSt.setString(1, userModel.getPhoneNumber());
+	            ResultSet checkPhoneRs = checkPhoneSt.executeQuery();
+
+	            checkPhoneRs.next();
+
+	            if (checkPhoneRs.getInt(1) > 0) {
+	                return -4; //phonenumber already exists
+	            }
+
+	            PreparedStatement checkEmailSt = con.prepareStatement(Utilities.GET_EMAIL);
+	            checkEmailSt.setString(1, userModel.getEmail());
+	            ResultSet checkEmailRs = checkEmailSt.executeQuery();
+
+	            checkEmailRs.next();
+
+	            if (checkEmailRs.getInt(1) > 0) {
+	                return -3; //email already exists
+	            }
+			//if the username, emnail and phone number are unique then continue the registration
 			statement.setString(1, userModel.getFullName());
 			statement.setString(2, userModel.getEmail());
 			statement.setString(3, userModel.getUserName());
@@ -336,10 +365,22 @@ public class DatabaseController {
 	}
 	
 	public String getAccountType(int userId) {
-		String accountType = null;
-		return accountType;
-		
-	}
+	    String accountType = null;
+	        try (Connection con = getConnection()) {
+	            PreparedStatement statement = con.prepareStatement(Utilities.GET_USER_ACCOUNT_TYPE);
+	            statement.setInt(1, userId);
+	            ResultSet resultSet = statement.executeQuery();
+	            if (resultSet.next()) {
+	                accountType = resultSet.getString("accountType");
+	                System.out.println("User account type is : " + accountType);
+	            }
+	        }
+	        catch (ClassNotFoundException | SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return accountType;
+		}
+ 
 	
 	public List<ContactUsMessageModel> getContactUsMessage(){
 		List<ContactUsMessageModel> contactUsMessages = new ArrayList<>();
@@ -515,20 +556,6 @@ public class DatabaseController {
 		
 		return purchaseHistroy;
 	}
-	public int deleteProducts(int productId) {
-		try(Connection con = getConnection()){
-			PreparedStatement statement = con.prepareStatement(Utilities.DELETE_PRODUCT);
-			statement.setInt(1, productId);
-			int result = statement.executeUpdate();
-			System.out.print("delete product result is " + result);
-			return result > 0 ? 1 : 0;
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return -1;
-		}
-		
-	}
 //	public int editProduct(ProductModel product) {
 //		// TODO Auto-generated method stub
 //		try(Connection con = getConnection()){
@@ -583,6 +610,65 @@ public class DatabaseController {
 	    }
 	    return productDetails;
 	}
-
 	
+	public List<AllPurchasesModel> getAllPurchases(){
+		List<AllPurchasesModel> allUserPurchases = new ArrayList<>();
+	    try(Connection con = getConnection()){
+	        PreparedStatement statement = con.prepareStatement(Utilities.GET_ALL_PURCHASES);
+	        ResultSet resultSet = statement.executeQuery();
+	        while(resultSet.next()) {
+	        	int purchaseId = resultSet.getInt("purchaseId");
+	            String DateTime = resultSet.getString("DateTime");
+	            int quantity = resultSet.getInt("quantity");
+	            double totalAmount = resultSet.getDouble("totalAmount");
+	            String userName = resultSet.getString("userName");
+	            String email = resultSet.getString("email");
+	            String phoneNumber = resultSet.getString("phoneNumber");
+	            String productName = resultSet.getString("productName");
+	            String productImage = resultSet.getString("productImage");
+	            double price = resultSet.getDouble("price");
+	            int productQuantity = resultSet.getInt("productQuantity");
+	            String companyName = resultSet.getString("companyName");
+	            String printTechnology = resultSet.getString("printTechnology");
+	            String color = resultSet.getString("color");
+	            String printColor = resultSet.getString("printColor");
+	            String purchaseStatus = resultSet.getString("purchaseStatus");
+	            AllPurchasesModel allPurchasesModel = new AllPurchasesModel(purchaseId, DateTime, quantity, totalAmount, userName, email, phoneNumber, productName, productImage, price, productQuantity, companyName, printTechnology, color, printColor, purchaseStatus); 
+	            allUserPurchases.add(allPurchasesModel);
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    return allUserPurchases;
+	}
+	
+    public int deleteProduct(int prodId) {
+        try (Connection con = getConnection()) {
+            PreparedStatement st = con.prepareStatement(Utilities.DELETE_PRODUCT_BY_ID);
+            st.setInt(1, prodId);
+
+            int result = st.executeUpdate();
+            return result > 0 ? 1 : 0; // Return 1 if deletion is successful, otherwise return 0
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace(); // Log the exception for debugging
+            return -1; // Return -1 for any exceptions
+        }
+    }
+    
+    public int removeCartItems(int userId, int productId) {
+        try (Connection con = getConnection()) {
+            PreparedStatement st = con.prepareStatement("delete from Cart where userId = ? and productId = ?");
+            st.setInt(1, userId);
+            st.setInt(2, productId);
+            int result = st.executeUpdate();
+            System.out.print(result);
+            return result > 0 ? 1 : 0; // Return the actual result
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+    }
+
 }

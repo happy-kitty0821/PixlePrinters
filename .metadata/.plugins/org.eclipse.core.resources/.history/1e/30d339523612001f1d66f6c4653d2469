@@ -1,0 +1,4 @@
+<%@ include file="AdminSidebar.jsp"%>
+<%@ page import="java.util.List" %>
+<%@ page import="models.AllPurchasesModel" %>
+<%@ page import="utils.Utilities" %>

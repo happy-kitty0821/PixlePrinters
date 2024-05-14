@@ -166,7 +166,7 @@ td, img {
 					<td>
 					
 						 <form method="post"
-							action="${pageContext.request.contextPath}/UpdateProductServlet">
+							action="${pageContext.request.contextPath}/pages/UpdateProductForm.jsp">
 							<input type="hidden" name="productId"
 								value="<%=product.getProductId()%>">
 							<button type="submit" class="btn-edit">Edit</button>
@@ -177,9 +177,10 @@ td, img {
 								value="<%=product.getProductId()%>">
 							<button type="submit" class="btn-delete">Delete</button>
 						</form>  --%>
-						<form id="deleteForm<%=product.getProductId()%>" method="post" action="${pageContext.request.contextPath}/DeleteProductServlet">
+						<form id="deleteForm<%=product.getProductId()%>" method="post" action="${pageContext.request.contextPath}/MopdifyProductServlet">
 					    <input type="hidden" name="productId" value="<%=product.getProductId()%>">
-					    <button type="button" onclick="confirmDelete('<%=product.getProductName()%>', '<%=product.getProductId()%>')">Delete</button>
+					    <input type="hidden" name="action" value="Delete" > 
+					    <button  value="submit">Delete</button>
 					</form>
 															
 					</td>
@@ -193,27 +194,6 @@ td, img {
 		}
 		%>
 	</div>
-	<script>
-	function confirmDelete(productName, productId) {
-	    if (confirm(`Are you sure you want to delete ${productName}?`)) {
-	        // If user confirms, send AJAX request to delete servlet
-	        let xhr = new XMLHttpRequest();
-	        xhr.open('POST', `${pageContext.request.contextPath}/DeleteProductServlet`, true);
-	        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	        xhr.onreadystatechange = function() {
-	            if (xhr.readyState === 4 && xhr.status === 200) {
-	                // Handle the response from the servlet if needed
-	                // For example, you can reload the page to reflect the updated product list
-	                window.location.reload();
-	            }
-	        };
-	        xhr.send(`productId=${productId}`);
-	    }
-	}
-
-
-	</script>
-
 	
 </body>
 </html>

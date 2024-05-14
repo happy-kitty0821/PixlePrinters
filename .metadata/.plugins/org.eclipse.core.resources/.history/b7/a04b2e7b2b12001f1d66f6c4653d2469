@@ -1,0 +1,10 @@
+<%@ include file="AdminSidebar.jsp"%>
+<%@ page import="java.util.List"%>
+<%@ page import="models.ProductModel"%>
+<%@ page import="utils.Utilities"%>
+
+<body>
+	<div class=main-body>
+		<h1>Displaying all purchases</h1>
+	</div>
+</body>

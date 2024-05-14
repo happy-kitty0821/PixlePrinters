@@ -39,21 +39,40 @@ public class LoginServlet extends HttpServlet {
 
         if (loginResult == 1) {
         	HttpSession session = request.getSession();
-            session.setAttribute("username", username);
             int userId = dbController.getUserId(username);
-            session.setAttribute("userId", userId); //setting the maximum session timeout to 30 minutes
+            String accountType = dbController.getAccountType(userId);
+            session.setAttribute("username", username);
+            session.setAttribute("userId", userId); 
+            session.setAttribute("accountType", accountType);
+            session.setMaxInactiveInterval(30 * 60);//setting the maximum session timeout to 30 minutes
+            /* session part end 
+             *----- cookie start-----*/
             Cookie userCookie = new Cookie("username", username);
             userCookie.setMaxAge(30 * 60); //cookie expires after 30 minutes
+            response.addCookie(userCookie);
+            //creating a new cookie for the account type
+            Cookie accountTypeCookie = new Cookie("accountType", accountType);
+            accountTypeCookie.setMaxAge(30 * 60); //cookie expires after 30 minutes
+            response.addCookie(accountTypeCookie);
             response.sendRedirect(request.getContextPath() + Utilities.HOME_PAGE);
         } 
         else if (loginResult == 5) {
         	HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+            
             int userId = dbController.getUserId(username);
+            String accountType = dbController.getAccountType(userId);
             session.setAttribute("userId", userId);
+            session.setAttribute("username", username);
+            session.setAttribute("accountType", accountType);
+            /* session part end 
+             *----- cookie start-----*/
             Cookie userCookie = new Cookie("username", username);
-            userCookie.setMaxAge(30 * 60); // Cookie expires after 30 minutes
+            userCookie.setMaxAge(30 * 60); //cookie expires after 30 minutes
             response.addCookie(userCookie);
+            //creating a new cookie for the account type
+            Cookie accountTypeCookie = new Cookie("accountType", accountType);
+            accountTypeCookie.setMaxAge(30 * 60); //cookie expires after 30 minutes
+            response.addCookie(accountTypeCookie);
             response.sendRedirect(request.getContextPath() + Utilities.ADMIN_HOME_SERVLET);	
         } 
         else if (loginResult == 0) {

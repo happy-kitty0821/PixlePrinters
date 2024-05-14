@@ -50,6 +50,12 @@ public class ContactUsMessageModel implements Serializable{
 	public void setMessage(String message) {
 		Message = message;
 	}
+	public Date getDateTime() {
+		return DateTime;
+	}
+	public void setDateTime(Date dateTime) {
+		DateTime = dateTime;
+	}
 	
 	
 }
