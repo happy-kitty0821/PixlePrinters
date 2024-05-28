@@ -181,7 +181,7 @@ td, img {
 					    <input type="hidden" name="productId" value="<%=product.getProductId()%>">
 					    <input type="hidden" name="action" value="Delete" > 
 					    <button  value="submit">Delete</button>
-					</form>
+						</form>
 															
 					</td>
 				</tr>

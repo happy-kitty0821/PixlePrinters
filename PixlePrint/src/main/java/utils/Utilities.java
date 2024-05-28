@@ -9,8 +9,8 @@ package utils;
 		public static final String Customer_Registration = "INSERT INTO User (fullName, email, userName, phoneNumber, password, profilePicture) "
 		        + "VALUES (?,?,?,?,?,?)";
 		public static final String GET_USERNAME = "SELECT COUNT(*) FROM User WHERE userName = ?";
-		public static final String GET_PHONE = "SELECT COUNT(*) FROM student_info WHERE phoneNumber = ?";
-		public static final String GET_EMAIL = "SELECT COUNT(*) FROM student_info WHERE email = ?";
+		public static final String GET_PHONE = "SELECT COUNT(*) FROM Users WHERE phoneNumber = ?";
+		public static final String GET_EMAIL = "SELECT COUNT(*) FROM Users WHERE email = ?";
 		//query for admin registration 
 		public static final String Add_Admin = "INSERT INTO User (fullName, email, userName, accountType, phoneNumber, password, profilePicture)"
 		           + " VALUES (?,?,?,?,?,?,?)";
@@ -179,7 +179,7 @@ package utils;
 		public static final String ADMIN_HOME_SERVLET = "/AdminHomeServlet";
 		// End Servlet Route
 
-		public static final String Edit_Product = "update Product set productName = ?, productDesc=?, price=?, printSpeed=?, color=?, dimensions=? where productId = ?";
+		public static final String Edit_Product = "update Product set productName = ?, productDesc=?, price=?, printSpeed=?, color=?, dimensions=?, quantity=? where productId = ?";
 //				+ ""
 //				+ "SET productName = ?,"
 //				+ "WHERE productId = ?";
@@ -192,5 +192,6 @@ package utils;
 		public static final String SUCCESS_DELETE_MESSAGE = "The priduct was deleted";
 
 		public static final String ERROR_DELETE_MESSAGE = "Unable to delete Product";
-
+		
+		public static final String DELETE_FROM_CART = "delete from Cart where userId = ? and productId = ?";
 	}

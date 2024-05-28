@@ -27,7 +27,11 @@ public class RemoveCartServlet extends HttpServlet {
         if (result == 0) {
             request.setAttribute(Utilities.SUCCESS_MESSAGE, "Product removed from cart successfully.");
             System.out.print("yay");
-        } else {
+        } 
+        else if(result == 1) {
+        	request.setAttribute(Utilities.ERROR_MESSAGE, "Failed to remove product from cart.");
+        }
+        else {
             request.setAttribute(Utilities.ERROR_MESSAGE, "Failed to remove product from cart.");
             System.out.print("yay");
         }

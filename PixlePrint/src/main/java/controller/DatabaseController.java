@@ -516,7 +516,8 @@ public class DatabaseController {
 	        statement.setString(4, product.getPrintSpeed());
 	        statement.setString(5, product.getColor());
 	        statement.setString(6, product.getDimensions());
-	        statement.setInt(7, product.getProductId());
+	        statement.setInt(7, product.getQuantity());
+	        statement.setInt(8, product.getProductId());
 	        System.out.println(product.getProductDescription());
 	        int rowsUpdated = statement.executeUpdate();
 	        System.out.println("Rows updated: " + rowsUpdated);
@@ -658,12 +659,12 @@ public class DatabaseController {
     
     public int removeCartItems(int userId, int productId) {
         try (Connection con = getConnection()) {
-            PreparedStatement st = con.prepareStatement("delete from Cart where userId = ? and productId = ?");
+            PreparedStatement st = con.prepareStatement(Utilities.DELETE_FROM_CART);
             st.setInt(1, userId);
             st.setInt(2, productId);
             int result = st.executeUpdate();
             System.out.print(result);
-            return result > 0 ? 1 : 0; // Return the actual result
+            return result ; // Return the actual result
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

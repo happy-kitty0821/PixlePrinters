@@ -114,11 +114,13 @@ h2 {
 			%>
 		</div>
 		<h2>Add Product</h2>
-		<form action="${pageContext.request.contextPath}/AddProductServlet"
-			method="POST" enctype="multipart/form-data">
+		<form action="${pageContext.request.contextPath}/ModifyProductServlet"
+			method="POST" >
 			<div style= "display:flex; ">
 			<div style="width:1200px;">
+			<input type="hidden" name="action" value="update">
 			<div class="form-group">
+			
 				<label for="productName">Product Name</label> <input type="text"
 					id="productName" name="productName" required>
 			</div>
@@ -135,84 +137,26 @@ h2 {
 				<label for="productQuantity">Quantity</label> <input type="number"
 					id="productQuantity" name="productQuantity" required>
 			</div>
-			<div class="form-group">
-				<label for="productImage">Product Image</label> <input type="file"
-					id="productImage" name="productImage" accept="image/*" required>
-			</div>
-
-			<div class="form-group">
-				<label for="brandName">Brand</label> <select id="brandName"
-					name="brandName" required>
-					<option value="" selected disabled>Select Brand</option>
-					<%
-					if (request.getAttribute("brands") != null) {
-						List<BrandModel> brands = (List<BrandModel>) request.getAttribute("brands");
-						for (BrandModel brand : brands) {
-					%>
-					<option value="<%=brand.getCompanyName()%>"><%=brand.getCompanyName()%></option>
-					<%
-					}
-					}
-					%>
-				</select>
-			</div>
 			
 			</div>
 			
 			<div style="width:1000px; ">
 			<div class="form-group">
-				<label for="printTechnology">Print Technology</label> <select
-					id="printTechnology" name="printTechnology" required>
-					<option value="" selected disabled>Select Print Technology</option>
-					<option value="Inkjet">Inkjet</option>
-					<option value="Laser">Laser</option>
-					<option value="LED">LED</option>
-					<option value="Dot Matrix">Dot Matrix</option>
-					<option value="Dye Sublimation">Dye Sublimation</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="printColor">Print Color</label> <select id="printColor"
-					name="printColor" required>
-					<option value="" selected disabled>Select Print Color</option>
-					<option value="Black and white">Black and White</option>
-					<option value="Color">Color</option>
-					<option value="Supports Both">Supports Both</option>
-				</select>
-			</div>
-			<div class="form-group">
 				<label for="printSpeed">Print Speed (e.g., "500ppm")</label> <input
 					type="text" id="printSpeed" name="printSpeed" required>
 			</div>
-			<div class="form-group">
-				<label for="printResolution">Print Resolution</label> <input
-					type="text" id="printResolution" name="printResolution" required>
-			</div>
-
-			<div class="form-group">
-				<label for="printerWeight">Printer Weight</label> <input type="text" id="weight"
-					name="printerWeight" required>
-			</div>
-
 			<div class="form-group">
 				<label for="printerDimensions">Printer Dimensions</label> <input type="text"
 					id="printerDimensions" name="printerDimensions" required>
 			</div>
 
 			<div class="form-group">
-				<label for="operatingSystem">Operating Systems</label> <input
-					type="text" id="operatingSystem" name="operatingSystem" required>
-			</div>
-
-			<div class="form-group">
 				<label for="printerColor">Printer Color</label> <input type="text" id="printerColor"
 					name="printerColor" required>
 			</div>
-
-			<div class="form-group">
-				<label for="supportedPageSize">Supported Page Size</label> <input
-					type="text" id="supportedPageSize" name="supportedPageSize"
-					required>
+						<div class="form-group">
+				<label for="printerColor">Product Id</label> <input type="text" id="printerColor"
+					name="productId" required>
 			</div>
 		</div>
 		</div>

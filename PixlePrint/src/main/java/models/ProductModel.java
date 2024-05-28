@@ -245,6 +245,19 @@ public class ProductModel{
 		this.productImage = productImage;
 	}
 
+	public ProductModel(int productId, String productName, String productDescription, double price, int quantity,
+			String printSpeed, String dimensions, String color) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.price = price;
+		this.quantity = quantity;
+		this.printSpeed = printSpeed;
+		this.dimensions = dimensions;
+		this.color = color;
+	}
+
 //	public void setProductImage(String productImage) {
 //		this.productImage = productImage;
 //	}
